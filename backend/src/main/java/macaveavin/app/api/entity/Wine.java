@@ -5,7 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-public class wine {
+public class Wine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long wine_id;
@@ -17,7 +17,7 @@ public class wine {
     private Integer year;
 
     @Column(name= "type")
-    private String type;
+    private WineTypeEnum type;
 
     @Column(name= "country")
     private String country;
@@ -68,9 +68,18 @@ public class wine {
         this.comments = comments;
     }
 
-    public wine(String name, Integer year, String country, String ean, String comments) {
+    public WineTypeEnum getType() {
+        return type;
+    }
+
+    public void setType(WineTypeEnum type) {
+        this.type = type;
+    }
+
+    public Wine(String name, Integer year, WineTypeEnum type, String country, String ean, String comments) {
         this.name = name;
         this.year = year;
+        this.type = type;
         this.country = country;
         this.ean = ean;
         this.comments = comments;

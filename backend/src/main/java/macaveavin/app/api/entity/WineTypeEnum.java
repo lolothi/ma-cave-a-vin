@@ -1,4 +1,9 @@
 package macaveavin.app.api.entity;
 
-public enum WineEnum {
+public enum WineTypeEnum {
+    NULL,
+    RED, WHITE,
+    ROSE,
+
+
 }
