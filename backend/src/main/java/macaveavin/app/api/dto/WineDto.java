@@ -1,38 +1,33 @@
-package macaveavin.app.api.entity;
+package macaveavin.app.api.dto;
 
-import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
+import macaveavin.app.api.entity.WineTypeEnum;
 
-@Entity
-@Table(name= "wine")
 @Data
-public class Wine {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class WineDto {
+
     private Long wine_id;
 
-    @Column(name= "name")
     private String name;
 
-    @Column(name= "year")
     private Integer year;
 
-    @Column(name= "type")
     private WineTypeEnum type;
 
-    @Column(name= "country")
     private String country;
 
-    @Column(name= "ean")
     private String ean;
 
-    @Column(name= "comments")
     private String comments;
 
     public Long getWine_id() {
         return wine_id;
+    }
+
+    public void setWine_id(Long wine_id) {
+        this.wine_id = wine_id;
     }
 
     public String getName() {
@@ -83,7 +78,8 @@ public class Wine {
         this.type = type;
     }
 
-    public Wine(String name, Integer year, WineTypeEnum type, String country, String ean, String comments) {
+    public WineDto(Long wine_id, String name, Integer year, WineTypeEnum type, String country, String ean, String comments) {
+        this.wine_id = wine_id;
         this.name = name;
         this.year = year;
         this.type = type;
@@ -92,6 +88,6 @@ public class Wine {
         this.comments = comments;
     }
 
-    public Wine() {
+    public WineDto() {
     }
 }
