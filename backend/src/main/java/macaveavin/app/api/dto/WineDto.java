@@ -1,8 +1,6 @@
 package macaveavin.app.api.dto;
 
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 import macaveavin.app.api.entity.WineTypeEnum;
 
 @Data
@@ -12,7 +10,7 @@ public class WineDto {
 
     private String name;
 
-    private Integer year;
+    private Integer available_year;
 
     private WineTypeEnum type;
 
@@ -38,12 +36,12 @@ public class WineDto {
         this.name = name;
     }
 
-    public Integer getYear() {
-        return year;
+    public Integer getAvailable_year() {
+        return available_year;
     }
 
-    public void setYear(Integer year) {
-        this.year = year;
+    public void setAvailable_year(Integer available_year) {
+        this.available_year = available_year;
     }
 
     public String getCountry() {
@@ -78,10 +76,10 @@ public class WineDto {
         this.type = type;
     }
 
-    public WineDto(Long wine_id, String name, Integer year, WineTypeEnum type, String country, String ean, String comments) {
+    public WineDto(Long wine_id, String name, Integer available_year, WineTypeEnum type, String country, String ean, String comments) {
         this.wine_id = wine_id;
         this.name = name;
-        this.year = year;
+        this.available_year = available_year;
         this.type = type;
         this.country = country;
         this.ean = ean;

@@ -2,8 +2,6 @@ package macaveavin.app.api.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 
 @Entity
 @Table(name= "wine")
@@ -16,8 +14,8 @@ public class Wine {
     @Column(name= "name")
     private String name;
 
-    @Column(name= "year")
-    private Integer year;
+    @Column(name= "available_year")
+    private Integer available_year;
 
     @Column(name= "type")
     private WineTypeEnum type;
@@ -43,12 +41,12 @@ public class Wine {
         this.name = name;
     }
 
-    public Integer getYear() {
-        return year;
+    public Integer getAvailable_year() {
+        return available_year;
     }
 
-    public void setYear(Integer year) {
-        this.year = year;
+    public void setAvailable_year(Integer available_year) {
+        this.available_year = available_year;
     }
 
     public String getCountry() {
@@ -83,9 +81,9 @@ public class Wine {
         this.type = type;
     }
 
-    public Wine(String name, Integer year, WineTypeEnum type, String country, String ean, String comments) {
+    public Wine(String name, Integer available_year, WineTypeEnum type, String country, String ean, String comments) {
         this.name = name;
-        this.year = year;
+        this.available_year = available_year;
         this.type = type;
         this.country = country;
         this.ean = ean;

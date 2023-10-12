@@ -38,7 +38,7 @@ public class WineService {
     public Optional<WineDto> updateWine(WineDto updatedWineDto, Long id){
         Wine wine = wineRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Erreur id:" + id));
         wine.setName(updatedWineDto.getName());
-        wine.setYear(updatedWineDto.getYear());
+        wine.setAvailable_year(updatedWineDto.getAvailable_year());
         wine.setType(updatedWineDto.getType());
         wine.setCountry(updatedWineDto.getCountry());
         wine.setEan(updatedWineDto.getEan());
