@@ -1,18 +1,18 @@
+<script setup lang="ts">
+import Navbar from './components/Navbar.vue'
+
+</script>
+
 <template>
-    <Ban/>
-    <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-    <HelloWorld msg="Hello" />
+      <div class="flex flex-col h-screen">
+      <Navbar />
+
+      <div class="flex justify-center items-center flex-grow flex-col">
+        <router-view />
+      </div>
+    </div>  
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-import Ban from './components/ban.vue';
+<style scoped>
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld,
-    Ban
-}
-}
-</script>
+</style>
