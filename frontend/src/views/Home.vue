@@ -4,7 +4,7 @@
 </template>
   
 <script lang="ts">
-import { getWineData } from "../service/fonctions.ts";
+import { getWineData } from "../service/WineService.ts";
 
 
   export default {

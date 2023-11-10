@@ -1,12 +1,15 @@
 <template>
-    <div v-for="bottle in bottles">
-      <wineBottle :bottle="bottle"/>
+    <div class="w-full" v-for="bottle in bottles" key="bottle.id">
+      <router-link :to="{ name: 'WineDetails', params:{ id: bottle.id}}">
+        <wineBottle :bottle="bottle"/>
+      </router-link>
+      
     </div>
 </template>
 <script setup lang="ts">
 // import { ref } from 'vue';
 import wineBottle from '../components/bottle.vue';
-import { getWineData } from '../service/fonctions.ts';
+import { getWineData } from '../service/WineService.ts';
 
 const bottles = getWineData();
 
