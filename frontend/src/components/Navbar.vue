@@ -15,9 +15,9 @@
       </header>
 </template>
 <script setup lang="ts">
-import NavBarLinks from './NavBar_liens.vue'
-import { ref } from 'vue'
+import NavBarLinks from './NavBar_liens.vue';
+import { ref } from 'vue';
 
-let mobileDisplay = ref (false)
+let mobileDisplay = ref (false);
 
 </script>

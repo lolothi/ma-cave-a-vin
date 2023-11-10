@@ -1,8 +1,13 @@
 <template>
-    <h1>vin</h1>
+    <div v-for="bottle in bottles">
+      <wineBottle :bottle="bottle"/>
+    </div>
 </template>
-<script>
-export default {
-  name: 'Wine',
-}
+<script setup lang="ts">
+// import { ref } from 'vue';
+import wineBottle from '../components/bottle.vue';
+import { getWineData } from '../service/fonctions.ts';
+
+const bottles = getWineData();
+
 </script>
