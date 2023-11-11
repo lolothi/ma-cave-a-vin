@@ -1,5 +1,5 @@
 <template>
-    <div class="container mx-auto my-8">
+    <div class="container mx-auto my-1">
       <div class="bg-blue-3 rounded-lg p-8 shadow-md">
 
         <h1 class="text-3xl font-semibold mb-4">{{ wine?.name }}</h1>
@@ -26,7 +26,6 @@ const wine = ref<Wine | null>(null);
 
 onMounted(() => {
   try {
-    // Ajoutez une vérification pour vous assurer que l'ID est un nombre valide
     if (!isNaN(wineId.value)) {
         wine.value = getOneWineData(wineId.value); 
     } else {

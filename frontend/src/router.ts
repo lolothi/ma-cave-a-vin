@@ -18,15 +18,15 @@ const routes = [
     component: Wine
   },
   {
-    path: '/mon-vin',
-    name: 'MyWine',
-    component: MyWine
-  },
-  {
-    path: '/mon-vin/:id',
+    path: '/vin/:id',
     name: 'WineDetails',
     component: WineDetails,
     props:true
+  },
+  {
+    path: '/mon-vin',
+    name: 'MyWine',
+    component: MyWine
   },
   {
     path: '/:pathMatch(.*)*',
