@@ -9,7 +9,7 @@ CREATE TABLE wine (
 );
 
 CREATE TABLE my_wine (
-  myWine_id serial PRIMARY key,
+  my_wine_id serial PRIMARY key,
   position varchar(100),
   quantity integer,
   wine_ref_id integer,

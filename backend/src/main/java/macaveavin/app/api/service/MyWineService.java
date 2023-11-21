@@ -43,7 +43,7 @@ public class MyWineService {
         myWine.setPosition(updatedMyWineDto.getPosition());
         myWine.setQuantity(updatedMyWineDto.getQuantity());
 
-        Optional<Wine> optionalWine = wineRepository.findById(updatedMyWineDto.getMyWine_id());
+        Optional<Wine> optionalWine = wineRepository.findById(updatedMyWineDto.getMy_wine_id());
         Wine wine = optionalWine.orElse(null);
 
         if (wine != null) {
@@ -56,7 +56,7 @@ public class MyWineService {
     }
 
     public MyWineDto saveMyWine(MyWineDto myWineDto) {
-        Optional<Wine> optionalWine = wineRepository.findById(myWineDto.getMyWine_id());
+        Optional<Wine> optionalWine = wineRepository.findById(myWineDto.getMy_wine_id());
         Wine wine = optionalWine.orElse(null);
 
         if (wine != null) {

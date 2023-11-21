@@ -2,24 +2,24 @@ package macaveavin.app.api.dto;
 
 public class MyWineDto {
 
-    private Long myWine_id;
+    private Long my_wine_id;
     private String position; //update later for real position
     private Integer quantity;
     private Long wine;
 
-    public MyWineDto(Long myWine_id, String position, Integer quantity, Long wine) {
-        this.myWine_id = myWine_id;
+    public MyWineDto(Long my_wine_id, String position, Integer quantity, Long wine) {
+        this.my_wine_id = my_wine_id;
         this.position = position;
         this.quantity = quantity;
         this.wine = wine;
     }
 
-    public Long getMyWine_id() {
-        return myWine_id;
+    public Long getMy_wine_id() {
+        return my_wine_id;
     }
 
-    public void setMyWine_id(Long myWine_id) {
-        this.myWine_id = myWine_id;
+    public void setMy_wine_id(Long my_wine_id) {
+        this.my_wine_id = my_wine_id;
     }
 
     public String getPosition() {

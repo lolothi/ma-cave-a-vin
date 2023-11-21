@@ -1,13 +1,15 @@
 package macaveavin.app.api.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name= "myWine")
+@Data
 public class MyWine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long myWine_id;
+    private Long my_wine_id;
 
     @Column(name= "position")
     private String position; //update later for real position
@@ -19,18 +21,12 @@ public class MyWine {
     @JoinColumn(name= "wine_id")
     private Wine wine;
 
-    public MyWine(String position, Integer quantity, Wine wine) {
-        this.position = position;
-        this.quantity = quantity;
-        this.wine = wine;
+    public Long getMy_wine_id() {
+        return my_wine_id;
     }
 
-    public Long getMyWine_id() {
-        return myWine_id;
-    }
-
-    public void setMyWine_id(Long myWine_id) {
-        this.myWine_id = myWine_id;
+    public void setMy_wine_id(Long my_wine_id) {
+        this.my_wine_id = my_wine_id;
     }
 
     public String getPosition() {
@@ -55,5 +51,14 @@ public class MyWine {
 
     public void setWine(Wine wine) {
         this.wine = wine;
+    }
+
+    public MyWine(String position, Integer quantity, Wine wine) {
+        this.position = position;
+        this.quantity = quantity;
+        this.wine = wine;
+    }
+
+    public MyWine() {
     }
 }

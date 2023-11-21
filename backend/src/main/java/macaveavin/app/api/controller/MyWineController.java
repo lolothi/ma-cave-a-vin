@@ -13,28 +13,28 @@ public class MyWineController {
     @Autowired
     private MyWineService myWineService;
 
-    @GetMapping("/mon-vin")
+    @GetMapping("/monVin")
     public List<MyWineDto> getMyWines() {
         return myWineService.getMyWines();
     }
 
-    @GetMapping("/mon-vin/{id}")
+    @GetMapping("/monVin/{id}")
     public Optional<MyWineDto> getOneMyWine(@PathVariable Long id) {
         return myWineService.getMyWine(id);
     }
 
-    @PatchMapping("/mon-vin/{id}")
+    @PatchMapping("/monVin/{id}")
     public Optional<MyWineDto> updateMyWine(@RequestBody MyWineDto updatedMyWineDto, @PathVariable Long id) {
         return myWineService.updateMyWine(updatedMyWineDto, id);
     }
 
-    @PostMapping("/mon-vin")
+    @PostMapping("/monVin")
     public MyWineDto saveMyWine(@RequestBody MyWineDto newMyWineDto) {
         return myWineService.saveMyWine(newMyWineDto);
     }
 
-    @DeleteMapping("/mon-vin")
-    public String deleteMywine(@PathVariable Long id) {
+    @DeleteMapping("/monVin/{id}")
+    public String deleteMyWine(@PathVariable Long id) {
         return myWineService.deleteMyWine(id);
     }
 

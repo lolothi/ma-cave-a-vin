@@ -10,7 +10,7 @@ import java.util.Optional;
 @Component
 public class MyWineMapper {
     public MyWineDto convertToDto(Optional<MyWine> myWine) {
-        return new MyWineDto(myWine.get().getMyWine_id(), myWine.get().getPosition(), myWine.get().getQuantity(), myWine.get().getWine().getWine_id());
+        return new MyWineDto(myWine.get().getMy_wine_id(), myWine.get().getPosition(), myWine.get().getQuantity(), myWine.get().getWine().getWine_id());
     }
 
     public MyWine convertToEntity(MyWineDto myWineDto, Wine wine) {
