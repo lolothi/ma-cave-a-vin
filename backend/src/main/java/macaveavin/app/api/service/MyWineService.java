@@ -56,9 +56,8 @@ public class MyWineService {
     }
 
     public MyWineDto saveMyWine(MyWineDto myWineDto) {
-        Optional<Wine> optionalWine = wineRepository.findById(myWineDto.getMy_wine_id());
+        Optional<Wine> optionalWine = wineRepository.findById(myWineDto.getWine());
         Wine wine = optionalWine.orElse(null);
-
         if (wine != null) {
             myWineRepository.save(myWineMapper.convertToEntity(myWineDto, wine));
             return myWineDto;

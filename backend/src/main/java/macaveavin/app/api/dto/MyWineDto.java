@@ -7,13 +7,6 @@ public class MyWineDto {
     private Integer quantity;
     private Long wine;
 
-    public MyWineDto(Long my_wine_id, String position, Integer quantity, Long wine) {
-        this.my_wine_id = my_wine_id;
-        this.position = position;
-        this.quantity = quantity;
-        this.wine = wine;
-    }
-
     public Long getMy_wine_id() {
         return my_wine_id;
     }
@@ -43,6 +36,13 @@ public class MyWineDto {
     }
 
     public void setWine(Long wine) {
+        this.wine = wine;
+    }
+
+    public MyWineDto(Long my_wine_id, String position, Integer quantity, Long wine) {
+        this.my_wine_id = my_wine_id;
+        this.position = position;
+        this.quantity = quantity;
         this.wine = wine;
     }
 }
