@@ -1,9 +1,9 @@
 <template>
     <header class="bg-blue-2">
-        <nav class="mx-auto flex justify-between p-2" aria-label="Global">
-          <div class="flex lg:flex-1 flex justify-between p-2">
+        <nav class="flex justify-between p-2" aria-label="Global">
+          <div class="flex justify-between">
             <router-link to="/"><div class="flex mr-10"><img src="../assets/Wine_Glass_32.png"><strong>Ma cave à Vin</strong></div></router-link>
-            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+            <div class="hidden md:block" id="navbar-default">
               <ul class="flex flex-row">
                 <li v-for="link in navBarLinks" :key="link.to">
                   <router-link :class=styleLinks(link.to) :to="link.to">{{ link.label }}</router-link>
@@ -39,7 +39,7 @@ const routeParams = ref(route.params)
 const navBarLinks = ref([
     {to:"/ma-cave", label:"Ma cave"}, 
     {to:"/mon-vin", label:"Mes vins"},
-    {to:"/vin", label:"Vin"}
+    // {to:"/vin", label:"Vin"}
 ])
 
 const isMobile = ref(window.innerWidth <= 768);
