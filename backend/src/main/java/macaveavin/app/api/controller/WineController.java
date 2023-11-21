@@ -19,27 +19,27 @@ public class WineController {
         return "Hello guys !";
     }
 
-    @GetMapping("/vin")
+    @GetMapping("/wine")
     public List<WineDto> geWines() {
         return  wineService.getWines();
     }
 
-    @GetMapping("/vin/{id}")
+    @GetMapping("/wine/{id}")
     public Optional<WineDto> getOneWine(@PathVariable Long id) {
         return wineService.getWine(id);
     }
 
-    @PatchMapping("vin/{id}")
+    @PatchMapping("wine/{id}")
     public Optional<WineDto> updateWine(@RequestBody WineDto updatedWineDto, @PathVariable Long id) {
         return wineService.updateWine(updatedWineDto, id);
     }
 
-    @PostMapping("/vin")
+    @PostMapping("/wine")
     public WineDto saveWine(@RequestBody WineDto newWineDto) {
         return wineService.saveWine(newWineDto);
     }
 
-    @DeleteMapping("/vin/{id}")
+    @DeleteMapping("/wine/{id}")
     public String deleteWine(@PathVariable Long id) {
         return wineService.deleteWine(id);
     }
