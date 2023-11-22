@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
-import { getOneWineData } from '../service/WineService.ts';
+import wineData from '../service/WineService.ts';
 import { Wine } from '../classes/WineClass.ts'
 
 const route = useRoute();
@@ -27,7 +27,7 @@ const wine = ref<Wine | null>(null);
 onMounted(() => {
   try {
     if (!isNaN(wineId.value)) {
-        wine.value = getOneWineData(wineId.value); 
+        wineData.getOneWine(wineId.value); 
     } else {
       console.error('ID de vin invalide');
     }

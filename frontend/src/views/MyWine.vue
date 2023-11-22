@@ -8,8 +8,8 @@
 </template>
 <script setup lang="ts">
 import wineBottle from '../components/bottle.vue';
-import { getWineData } from '../service/MyWineService.ts';
+import wineData from '../service/MyWineService.ts';
 
-const bottles = getWineData();
+const bottles = wineData.getWines();
 
 </script>

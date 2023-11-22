@@ -9,8 +9,8 @@
 <script setup lang="ts">
 // import { ref } from 'vue';
 import wineBottle from '../components/bottle.vue';
-import { getWineData } from '../service/WineService.ts';
+import wineData from '../service/WineService.ts';
 
-const bottles = getWineData();
+const bottles = wineData.getWines();
 
 </script>

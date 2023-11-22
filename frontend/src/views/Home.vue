@@ -4,7 +4,7 @@
 </template>
   
 <script lang="ts">
-import { getWineData } from "../service/WineService.ts";
+import wineData from "../service/WineService.ts";
 
 
   export default {
@@ -17,7 +17,7 @@ import { getWineData } from "../service/WineService.ts";
       }
     },
     mounted(){
-      const wines = getWineData()
+      const wines = wineData.getWines()
       for (let nbre = 0; nbre < wines.length; nbre++ )
       console.log(wines[nbre].name)
       
