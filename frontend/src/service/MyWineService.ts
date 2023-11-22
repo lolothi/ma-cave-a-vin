@@ -1,49 +1,31 @@
-import { Wine } from '../classes/WineClass';
-import axios from "axios";
-
-//a CHANGER
-const APIwine = "192.168.1.29:9000/wine"
-
-const bordeau = new Wine(0, "Bon bordeau", 2020, "", "", "", "", 2);
-const coteDuRhone = new Wine(1, "Meilleur Cote du rhône", 2021, "", "", "", "", 2);
-const listeDeVins = [ bordeau, coteDuRhone ]
+import axios, { AxiosError } from "axios";
+import { Wine } from "../classes/WineClass";
 
 export default {
-//   getWines() {
-//     return listeDeVins
-// },
-async getWines() {
-  return axios
-  // .get(`${APIwine}`)
-  .get('http://192.168.1.29:9000/wine')
-  .then((res) => {
-   res.data, 
-   console.log(res.data)})
-  .catch((err)=> {throw err.response;})
-},
+  async getWines(): Promise<Wine[]> {
+    try {
+      const response = await axios.get("/api/wine");
+      return response.data;
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        throw (error as AxiosError).response;
+      } else {
+        throw error;
+      }
+    }
+  },
 
-  async getOneWine(id: number) {
-   return axios
-   .get(`${APIwine}/${id}`)
-   .then((res) => {
-    res.data, 
-    console.log(res.data)})
-   .catch((err)=> {throw err.response;})
-}
-
-//   getOneWineData(id: number) {
-//   try {
-//     const oneWineData = listeDeVins.find(Object => Object.id === id);
-//     if (oneWineData) {
-//       return oneWineData;
-//     } else {
-//       throw new Error(`No wine found with ID: ${id}`);
-//     }
-//   } catch (error) {
-//     throw error;
-//   }
-  
-// }
-
-
+  async getOneWine(id: number): Promise<Wine> {
+    try {
+      const response = await axios.get(`/api/wine/${id}`);
+      console.log("---wineID:", id);
+      return response.data;
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        throw (error as AxiosError).response;
+      } else {
+        throw error;
+      }
+    }
+  },
 };

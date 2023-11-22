@@ -4,7 +4,8 @@ import Home from './views/Home.vue';
 import NotFound from './views/NotFound.vue';
 import Wine from './views/Wine.vue';
 import MyWine from './views/MyWine.vue';
-import WineDetails from './views/WineDetails.vue'
+import WineDetails from './views/WineDetails.vue';
+import MyWineDetails from './views/MyWineDetails.vue';
 
 const routes = [
   {
@@ -27,6 +28,12 @@ const routes = [
     path: '/mon-vin',
     name: 'MyWine',
     component: MyWine
+  },
+  {
+    path: '/mon-vin/:id',
+    name: 'MyWineDetails',
+    component: MyWineDetails,
+    props:true
   },
   {
     path: '/:pathMatch(.*)*',

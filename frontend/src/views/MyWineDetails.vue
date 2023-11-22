@@ -24,13 +24,9 @@ const route = useRoute();
 const wineId = ref(Number(route.params.id));
 const wine = ref<Wine | null>(null);
 
-onMounted(() => {
+onMounted(async () => {
   try {
-    if (!isNaN(wineId.value)) {
-        MyWineService.getOneWine(wineId.value); 
-    } else {
-      console.error('ID de vin invalide');
-    }
+      wine.value = await MyWineService.getOneWine(wineId.value); 
   } catch (error) {
     console.error('Erreur lors de la récupération des détails du vin', error);
   }
