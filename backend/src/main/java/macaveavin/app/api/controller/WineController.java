@@ -1,10 +1,12 @@
 package macaveavin.app.api.controller;
 
 import macaveavin.app.api.dto.WineDto;
+import macaveavin.app.api.entity.WineTypeEnum;
 import macaveavin.app.api.service.WineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,8 +24,28 @@ public class WineController {
 
     @GetMapping("/wine")
     public List<WineDto> geWines() {
-        return  wineService.getWines();
+        //return pour les tests avec le front end
+        List<WineDto> wineList = new ArrayList<>();
+
+        // Créer trois vins connus avec des valeurs spécifiques
+        wineList.add(new WineDto(1L, "Château Margaux", 2010, WineTypeEnum.RED, "France",
+                "Château Margaux", "Cabernet Sauvignon", "Grand Cru Classé", "1234567890123",
+                "image1.jpg", "Grilled meats", 95, "A classic Bordeaux wine", "Premium",
+                100, 50));
+
+        wineList.add(new WineDto(2L, "Barolo Riserva", 2012, WineTypeEnum.RED, "Italy", "Ceretto",
+                "Nebbiolo", "Riserva", "2345678901234", "image2.jpg",
+                "Pasta with truffle sauce", 93, "A rich and robust Barolo", "Reserve", 75, 25));
+
+        wineList.add(new WineDto(3L, "Riesling Spätlese", 2015, WineTypeEnum.WHITE, "Germany",
+                "Dr. Loosen", "Riesling", "Spätlese", "3456789012345", "image3.jpg",
+                "Spicy Thai cuisine", 88, "A sweet and aromatic Riesling", "Sweet", 50, 20));
+
+        return wineList;
+
+        //return  wineService.getWines();
     }
+
 
     @GetMapping("/wine/{id}")
     public Optional<WineDto> getOneWine(@PathVariable Long id) {
