@@ -2,7 +2,7 @@
     <header class="bg-blue-2">
         <nav class="flex justify-between p-2" aria-label="Global">
           <div class="flex justify-between">
-            <router-link to="/"><div class="flex mr-10"><img src="../assets/Wine_Glass_32.png"><strong>Ma cave à Vin</strong></div></router-link>
+            <router-link to="/"><div class="flex mr-10"><img src="../assets/wine_glasses_32.png"><strong>Ma cave à Vin</strong></div></router-link>
             <div class="hidden md:block" id="navbar-default">
               <ul class="flex flex-row">
                 <li v-for="link in navBarLinks" :key="link.to">
