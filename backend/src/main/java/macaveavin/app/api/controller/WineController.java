@@ -27,7 +27,6 @@ public class WineController {
         //return pour les tests avec le front end
         List<WineDto> wineList = new ArrayList<>();
 
-        // Créer trois vins connus avec des valeurs spécifiques
         wineList.add(new WineDto(1L, "Château Margaux", 2010, WineTypeEnum.RED, "France",
                 "Château Margaux", "Cabernet Sauvignon", "Grand Cru Classé", "1234567890123",
                 "image1.jpg", "Grilled meats", 95, "A classic Bordeaux wine", "Premium",
@@ -49,7 +48,13 @@ public class WineController {
 
     @GetMapping("/wine/{id}")
     public Optional<WineDto> getOneWine(@PathVariable Long id) {
-        return wineService.getWine(id);
+        //return pour les tests avec le front end
+        Optional<WineDto> optionalWineDto = Optional.of(new WineDto(1L, "Château Margaux", 2010, WineTypeEnum.RED, "France",
+                "Château Margaux", "Cabernet Sauvignon", "Grand Cru Classé", "1234567890123",
+                "image1.jpg", "Grilled meats", 95, "A classic Bordeaux wine", "Premium",
+                100, 50));
+        return optionalWineDto;
+        //return wineService.getWine(id);
     }
 
     @PatchMapping("wine/{id}")

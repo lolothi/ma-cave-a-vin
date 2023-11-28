@@ -20,7 +20,6 @@ public class WineService {
     @Autowired
     private WineMapper wineMapper;
 
-
     public List<WineDto> getWines() {
         return ((List<Wine>) wineRepository.findAll()).stream()
                 .map(wine -> wineMapper.convertToDto(Optional.ofNullable(wine)))
