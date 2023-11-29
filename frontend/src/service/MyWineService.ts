@@ -1,11 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { Wine } from "../classes/WineClass";
 
-// for tests
-// const bordeau = new Wine(0, "Bon bordeau", 2020, "", "", "", "", 2);
-// const coteDuRhone = new Wine(1, "Meilleur Cote du rhône", 2021, "", "", "", "", 2);
-// const listeDeVins = [ bordeau, coteDuRhone ]
-
 export default {
   async getWines(): Promise<Wine[]> {
     try {
@@ -33,6 +28,17 @@ export default {
         throw error;
       }
     }
+  },
+
+  async addWine(newBottle: any)  {
+    console.log('PROOOO', newBottle);
+    axios.post('/api/wine', newBottle)
+    .then(response => {
+        console.log('Response:', response.data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
   },
 
   // async updateWine(id: number, newFields:object): Promise<Wine> {
