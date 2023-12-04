@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
-@CrossOrigin(origins = "http://192.168.1.41:*")
 public class WineController {
 
     @Autowired
@@ -51,12 +51,9 @@ public class WineController {
     }
 
     @PostMapping("/wine")
-    public void saveWine(@RequestBody WineDto newWineDto) {
-        System.out.println("POST yes");
-        wineService.saveWine(newWineDto);}
-    /*public WineDto saveWine(@RequestBody WineDto newWineDto) {
+    public WineDto saveWine(@RequestBody WineDto newWineDto) {
         return wineService.saveWine(newWineDto);
-    }*/
+    }
 
     @DeleteMapping("/wine/{id}")
     public String deleteWine(@PathVariable Long id) {

@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
 @CrossOrigin(origins = "http://192.168.1.13:5173")
+@RestController
 public class MyWineController {
     @Autowired
     private MyWineService myWineService;
