@@ -1,13 +1,16 @@
 <template>
-    <div>{{ wines?.length }} bouteilles dans ma cave.</div>
-    <newWineBottle/>
+  <div>{{ wines?.length }} bouteilles dans ma cave.</div>
+  <router-link to="/vin/nouveau">
+    <div class="flex mr-10">
+      <strong>Ajouter du vin</strong>
+    </div>
+  </router-link>
 </template>
   
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { Wine } from '../classes/WineClass.ts';
 import MyWineService from '../service/MyWineService.ts';
-import newWineBottle from '../components/newBottle.vue';
 
 const wines = ref<Wine[] | null>(null);
 
@@ -18,4 +21,5 @@ onMounted(async () => {
     console.error("Erreur lors du chargement des données :", error);
   }
 });
+
 </script>

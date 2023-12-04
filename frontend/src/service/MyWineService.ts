@@ -33,20 +33,16 @@ export default {
   },
 
   async addWine(newBottle: Wine) {
-    console.log("PROOOO", newBottle);
     try {
-      console.log("TRY");
-      axios.post(`${api}/wine`, { 'name':'toto'}, {
+      console.log("TRY", newBottle);
+      const response = await axios.post("/api/wine", { name: 'toto' }, {
         headers: {
-          // 'Authorization': 'Bearer YOUR_API_KEY',
-          // 'Content-Type': 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json'
         }});
-        console.log("TRY-ok");
-    } catch (error) {
-      console.log("ERREUR: ", error);
-      throw error;
+        console.log("TRY-ok", response.data);
+    } catch (error: unknown) {
+      console.log("EEERRRRRROOOORR");
+        throw error;
     }
   },
 

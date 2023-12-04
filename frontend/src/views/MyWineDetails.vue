@@ -5,7 +5,7 @@
         <div>
           <h1 class="text-3xl font-semibold mb-4">{{ wine?.name }}</h1>
           <div>
-            <div>
+            <div v-if="wine?.picture_link">
               <img :src="`/wines/${wine?.picture_link}`" class="w-32">
             </div>
             <p><strong>Année :</strong> {{ wine?.available_year }}</p>

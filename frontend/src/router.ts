@@ -6,6 +6,7 @@ import Wine from './views/Wine.vue';
 import MyWine from './views/MyWine.vue';
 import WineDetails from './views/WineDetails.vue';
 import MyWineDetails from './views/MyWineDetails.vue';
+import AddWine from './views/AddWine.vue';
 
 const routes = [
   {
@@ -23,6 +24,11 @@ const routes = [
     name: 'WineDetails',
     component: WineDetails,
     props:true
+  },
+  {
+    path: '/vin/nouveau',
+    name: 'AddWine',
+    component: AddWine
   },
   {
     path: '/mon-vin',
