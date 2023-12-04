@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://192.168.1.13:5173")
+@CrossOrigin(origins = "http://192.168.1.41:*")
 public class WineController {
 
     @Autowired
@@ -51,9 +51,12 @@ public class WineController {
     }
 
     @PostMapping("/wine")
-    public WineDto saveWine(@RequestBody WineDto newWineDto) {
+    public void saveWine(@RequestBody WineDto newWineDto) {
+        System.out.println("POST yes");
+        wineService.saveWine(newWineDto);}
+    /*public WineDto saveWine(@RequestBody WineDto newWineDto) {
         return wineService.saveWine(newWineDto);
-    }
+    }*/
 
     @DeleteMapping("/wine/{id}")
     public String deleteWine(@PathVariable Long id) {
