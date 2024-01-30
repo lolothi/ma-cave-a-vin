@@ -4,12 +4,12 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "myWine")
+@Table(name = "cellarPlace")
 @Data
-public class MyWine {
+public class CellarPlace {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long my_wine_id;
+    private Long cellar_place_id;
 
     @Column(name = "position")
     private String position; //update later for real position
@@ -24,12 +24,12 @@ public class MyWine {
     @JoinColumn(name = "wine_id")
     private Wine wine;
 
-    public Long getMy_wine_id() {
-        return my_wine_id;
+    public Long getCellar_place_id() {
+        return cellar_place_id;
     }
 
-    public void setMy_wine_id(Long my_wine_id) {
-        this.my_wine_id = my_wine_id;
+    public void setCellar_place_id(Long cellar_place_id) {
+        this.cellar_place_id = cellar_place_id;
     }
 
     public String getPosition() {
@@ -64,13 +64,13 @@ public class MyWine {
         this.wine = wine;
     }
 
-    public MyWine(String position, String position_opt, Integer quantity, Wine wine) {
+    public CellarPlace(String position, String position_opt, Integer quantity, Wine wine) {
         this.position = position;
         this.position_opt = position_opt;
         this.quantity = quantity;
         this.wine = wine;
     }
 
-    public MyWine() {
+    public CellarPlace() {
     }
 }

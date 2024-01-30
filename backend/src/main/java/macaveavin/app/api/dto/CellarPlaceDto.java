@@ -4,16 +4,16 @@ import lombok.Getter;
 import macaveavin.app.api.entity.Wine;
 
 @Getter
-public class MyWineDto {
+public class CellarPlaceDto {
 
-    private Long my_wine_id;
+    private Long cellar_place_id;
     private String position; //update later for real position
     private String position_opt; //update later for real position
     private Integer quantity;
     private Wine wine;
 
-    public void setMy_wine_id(Long my_wine_id) {
-        this.my_wine_id = my_wine_id;
+    public void setMy_wine_id(Long cellar_place_id) {
+        this.cellar_place_id = cellar_place_id;
     }
 
     public void setPosition(String position) {
@@ -32,8 +32,8 @@ public class MyWineDto {
         this.wine = wine;
     }
 
-    public MyWineDto(Long my_wine_id, String position, String position_opt, Integer quantity, Wine wine) {
-        this.my_wine_id = my_wine_id;
+    public CellarPlaceDto(Long cellar_place_id, String position, String position_opt, Integer quantity, Wine wine) {
+        this.cellar_place_id = cellar_place_id;
         this.position = position;
         this.position_opt = position_opt;
         this.quantity = quantity;

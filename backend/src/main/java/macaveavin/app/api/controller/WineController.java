@@ -22,7 +22,7 @@ public class WineController {
     }
 
     @GetMapping("/wine")
-    public List<WineDto> geWines() {
+    public List<WineDto> getWines() {
         //for tests
         if (wineService.getWines().isEmpty()) {
             wineService.saveWine(new WineDto(1L, "Château Margaux", 2010, WineTypeEnum.RED, "France",

@@ -17,12 +17,12 @@ CREATE TABLE wine (
   tag varchar(100)
 );
 
-CREATE TABLE my_wine (
-                         my_wine_id integer generated always as IDENTITY,
+CREATE TABLE cellar_place (
+                        cellar_place_id integer generated always as IDENTITY,
                          position varchar(100),
                          position_opt varchar(100),
                          quantity integer,
                          wine_id integer,
-                         primary KEY(my_wine_id),
+                         primary KEY(cellar_place_id),
                          CONSTRAINT wine_FK FOREIGN KEY (wine_id) REFERENCES wine(wine_id)
 );
