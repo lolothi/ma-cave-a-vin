@@ -1,5 +1,5 @@
 CREATE TABLE wine (
-  wine_id serial PRIMARY key,
+  wine_id integer generated always as IDENTITY,
   name varchar(100),
   available_year integer,
   type varchar(100),
@@ -14,15 +14,32 @@ CREATE TABLE wine (
   picture_link varchar(100),
   quantity_tot integer,
   quantity_in_wine_Cellar integer,
-  tag varchar(100)
+  tag varchar(100),
+  primary KEY(wine_id)
+);
+
+CREATE TABLE cellar (
+    cellar_id integer generated always as IDENTITY,
+    name varchar(100),
+    quantity_location_x integer,
+    quantity_location_y integer,
+    quantity_location_z integer,
+    quantity_bottle_max integer,
+    primary KEY(cellar_id)
+
 );
 
 CREATE TABLE cellar_place (
-                        cellar_place_id integer generated always as IDENTITY,
-                         position varchar(100),
-                         position_opt varchar(100),
-                         quantity integer,
-                         wine_id integer,
-                         primary KEY(cellar_place_id),
-                         CONSTRAINT wine_FK FOREIGN KEY (wine_id) REFERENCES wine(wine_id)
+    cellar_place_id integer generated always as IDENTITY,
+    position_x integer,
+    position_y integer,
+    position_z integer,
+    position_opt varchar(100),
+    quantity_bottle_max integer DEFAULT 0,
+    quantity_bottle_left integer DEFAULT 0,
+    wine_id integer,
+    cellar_id integer,
+    primary KEY(cellar_place_id),
+    CONSTRAINT wine_FK FOREIGN KEY (wine_id) REFERENCES wine(wine_id),
+    CONSTRAINT cellar_FK FOREIGN KEY (cellar_id) REFERENCES cellar(cellar_id)
 );
