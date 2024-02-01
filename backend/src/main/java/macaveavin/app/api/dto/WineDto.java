@@ -1,6 +1,5 @@
 package macaveavin.app.api.dto;
 
-import jakarta.persistence.Column;
 import lombok.Data;
 import lombok.Getter;
 import macaveavin.app.api.entity.WineTypeEnum;
@@ -9,11 +8,11 @@ import macaveavin.app.api.entity.WineTypeEnum;
 @Data
 public class WineDto {
 
-    private Long wine_id;
+    private Long wineId;
 
     private String name;
 
-    private Integer available_year;
+    private Integer availableYear;
 
     private WineTypeEnum type;
 
@@ -27,9 +26,9 @@ public class WineDto {
 
     private String ean;
 
-    private String picture_link;
+    private String pictureLink;
 
-    private String with_food;
+    private String withFood;
 
     private Integer note;
 
@@ -37,14 +36,14 @@ public class WineDto {
 
     private String tag;
 
-    private Integer quantity_tot;
+    private Integer quantityTot;
 
-    private Integer quantity_in_wine_Cellar;
+    private Integer quantityInWineCellar;
 
 
 
-    public void setWine_id(Long wine_id) {
-        this.wine_id = wine_id;
+    public void setWineId(Long wineId) {
+        this.wineId = wineId;
     }
 
     public void setProducer(String producer) {
@@ -59,12 +58,12 @@ public class WineDto {
         this.designation = designation;
     }
 
-    public void setPicture_link(String picture_link) {
-        this.picture_link = picture_link;
+    public void setPictureLink(String pictureLink) {
+        this.pictureLink = pictureLink;
     }
 
-    public void setWith_food(String with_food) {
-        this.with_food = with_food;
+    public void setWithFood(String withFood) {
+        this.withFood = withFood;
     }
 
     public void setNote(Integer note) {
@@ -75,8 +74,8 @@ public class WineDto {
         this.name = name;
     }
 
-    public void setAvailable_year(Integer available_year) {
-        this.available_year = available_year;
+    public void setAvailableYear(Integer availableYear) {
+        this.availableYear = availableYear;
     }
 
     public void setCountry(String country) {
@@ -99,31 +98,31 @@ public class WineDto {
         this.tag = tag;
     }
 
-    public void setQuantity_tot(Integer quantity_tot) {
-        this.quantity_tot = quantity_tot;
+    public void setQuantityTot(Integer quantityTot) {
+        this.quantityTot = quantityTot;
     }
 
-    public void setQuantity_in_wine_Cellar(Integer quantity_in_wine_Cellar) {
-        this.quantity_in_wine_Cellar = quantity_in_wine_Cellar;
+    public void setQuantityInWineCellar(Integer quantityInWineCellar) {
+        this.quantityInWineCellar = quantityInWineCellar;
     }
 
-    public WineDto(Long wine_id, String name, Integer available_year, WineTypeEnum type, String country, String producer, String variety, String designation, String ean, String picture_link, String with_food, Integer note, String comments, String tag, Integer quantity_tot, Integer quantity_in_wine_Cellar) {
-        this.wine_id = wine_id;
+    public WineDto(Long wineId, String name, Integer availableYear, WineTypeEnum type, String country, String producer, String variety, String designation, String ean, String pictureLink, String withFood, Integer note, String comments, String tag, Integer quantityTot, Integer quantityInWineCellar) {
+        this.wineId = wineId;
         this.name = name;
-        this.available_year = available_year;
+        this.availableYear = availableYear;
         this.type = type;
         this.country = country;
         this.producer = producer;
         this.variety = variety;
         this.designation = designation;
         this.ean = ean;
-        this.picture_link = picture_link;
-        this.with_food = with_food;
+        this.pictureLink = pictureLink;
+        this.withFood = withFood;
         this.note = note;
         this.comments = comments;
         this.tag = tag;
-        this.quantity_tot = quantity_tot;
-        this.quantity_in_wine_Cellar = quantity_in_wine_Cellar;
+        this.quantityTot = quantityTot;
+        this.quantityInWineCellar = quantityInWineCellar;
     }
 
 

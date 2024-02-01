@@ -11,13 +11,13 @@ import lombok.Getter;
 public class Wine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long wine_id;
+    private Long wineId;
 
     @Column(name= "name")
     private String name;
 
     @Column(name= "available_year")
-    private Integer available_year;
+    private Integer availableYear;
 
     @Column(name= "type")
     private WineTypeEnum type;
@@ -38,10 +38,10 @@ public class Wine {
     private String ean;
 
     @Column(name= "picture_link")
-    private String picture_link;
+    private String pictureLink;
 
     @Column(name= "with_food")
-    private String with_food;
+    private String withFood;
 
     @Column(name= "note")
     private Integer note;
@@ -53,10 +53,10 @@ public class Wine {
     private String tag;
 
     @Column(name= "quantity_tot")
-    private Integer quantity_tot;
+    private Integer quantityTot;
 
     @Column(name= "quantity_in_wine_Cellar")
-    private Integer quantity_in_wine_Cellar;
+    private Integer quantityInWineCellar;
 
     public void setTag(String tag) {
         this.tag = tag;
@@ -74,12 +74,12 @@ public class Wine {
         this.designation = designation;
     }
 
-    public void setPicture_link(String picture_link) {
-        this.picture_link = picture_link;
+    public void setPictureLink(String picture_link) {
+        this.pictureLink = picture_link;
     }
 
-    public void setWith_food(String with_food) {
-        this.with_food = with_food;
+    public void setWithFood(String with_food) {
+        this.withFood = with_food;
     }
 
     public void setNote(Integer note) {
@@ -90,8 +90,8 @@ public class Wine {
         this.name = name;
     }
 
-    public void setAvailable_year(Integer available_year) {
-        this.available_year = available_year;
+    public void setAvailableYear(Integer available_year) {
+        this.availableYear = available_year;
     }
 
     public void setCountry(String country) {
@@ -110,30 +110,30 @@ public class Wine {
         this.type = type;
     }
 
-    public void setQuantity_tot(Integer quantity_tot) {
-        this.quantity_tot = quantity_tot;
+    public void setQuantityTot(Integer quantity_tot) {
+        this.quantityTot = quantity_tot;
     }
 
-    public void setQuantity_in_wine_Cellar(Integer quantity_in_wine_Cellar) {
-        this.quantity_in_wine_Cellar = quantity_in_wine_Cellar;
+    public void setQuantityInWineCellar(Integer quantity_in_wine_Cellar) {
+        this.quantityInWineCellar = quantity_in_wine_Cellar;
     }
 
-    public Wine(String name, Integer available_year, WineTypeEnum type, String country, String producer, String variety, String designation, String ean, String picture_link, String with_food, Integer note, String comments, String tag, Integer quantity_tot, Integer quantity_in_wine_Cellar) {
+    public Wine(String name, Integer availableYear, WineTypeEnum type, String country, String producer, String variety, String designation, String ean, String pictureLink, String withFood, Integer note, String comments, String tag, Integer quantityTot, Integer quantityInWineCellar) {
         this.name = name;
-        this.available_year = available_year;
+        this.availableYear = availableYear;
         this.type = type;
         this.country = country;
         this.producer = producer;
         this.variety = variety;
         this.designation = designation;
         this.ean = ean;
-        this.picture_link = picture_link;
-        this.with_food = with_food;
+        this.pictureLink = pictureLink;
+        this.withFood = withFood;
         this.note = note;
         this.comments = comments;
         this.tag = tag;
-        this.quantity_tot = quantity_tot;
-        this.quantity_in_wine_Cellar = quantity_in_wine_Cellar;
+        this.quantityTot = quantityTot;
+        this.quantityInWineCellar = quantityInWineCellar;
     }
 
     public Wine() {

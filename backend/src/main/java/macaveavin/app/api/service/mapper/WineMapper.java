@@ -9,14 +9,14 @@ import java.util.Optional;
 @Component
 public class WineMapper {
     public WineDto convertToDto(Optional<Wine> wine) {
-        return wine.map(value -> new WineDto(value.getWine_id(), value.getName(), value.getAvailable_year(), value.getType(), value.getCountry(), value.getProducer(), value.getVariety(),
-                value.getDesignation(), value.getEan(), value.getPicture_link(), value.getWith_food(), value.getNote(), value.getComments(),
-                value.getTag(), value.getQuantity_tot(), value.getQuantity_in_wine_Cellar())).orElse(null);
+        return wine.map(value -> new WineDto(value.getWineId(), value.getName(), value.getAvailableYear(), value.getType(), value.getCountry(), value.getProducer(), value.getVariety(),
+                value.getDesignation(), value.getEan(), value.getPictureLink(), value.getWithFood(), value.getNote(), value.getComments(),
+                value.getTag(), value.getQuantityTot(), value.getQuantityInWineCellar())).orElse(null);
     }
 
     public Wine convertToEntity(WineDto wineDto) {
-        return new Wine(wineDto.getName(), wineDto.getAvailable_year(), wineDto.getType(), wineDto.getCountry(), wineDto.getProducer(), wineDto.getVariety(),
-                wineDto.getDesignation(), wineDto.getEan(), wineDto.getPicture_link(), wineDto.getWith_food(), wineDto.getNote(), wineDto.getComments(),
-                wineDto.getTag(), wineDto.getQuantity_tot(), wineDto.getQuantity_in_wine_Cellar());
+        return new Wine(wineDto.getName(), wineDto.getAvailableYear(), wineDto.getType(), wineDto.getCountry(), wineDto.getProducer(), wineDto.getVariety(),
+                wineDto.getDesignation(), wineDto.getEan(), wineDto.getPictureLink(), wineDto.getWithFood(), wineDto.getNote(), wineDto.getComments(),
+                wineDto.getTag(), wineDto.getQuantityTot(), wineDto.getQuantityInWineCellar());
     }
 }
