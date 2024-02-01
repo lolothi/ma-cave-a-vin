@@ -15,23 +15,23 @@ public class Cellar {
     private String name;
 
     @Column(name = "quantity_location_x")
-    private Integer quantity_location_x;
+    private Integer quantityLocationX;
 
     @Column(name = "quantity_location_y")
-    private Integer quantity_location_y;
+    private Integer quantityLocationY;
 
     @Column(name = "quantity_location_z")
-    private Integer quantity_location_z;
+    private Integer quantityLocationZ;
 
     @Column(name = "quantity_bottle_max")
-    private Integer quantity_bottle_max;
+    private Integer quantityBottleMax;
 
-    public Cellar(String name, Integer quantity_location_x, Integer quantity_location_y, Integer quantity_location_z, Integer quantity_bottle_max) {
+    public Cellar(String name, Integer quantityLocationX, Integer quantityLocationY, Integer quantityLocationZ, Integer quantityBottleMax) {
         this.name = name;
-        this.quantity_location_x = quantity_location_x;
-        this.quantity_location_y = quantity_location_y;
-        this.quantity_location_z = quantity_location_z;
-        this.quantity_bottle_max = quantity_bottle_max;
+        this.quantityLocationX = quantityLocationX;
+        this.quantityLocationY = quantityLocationY;
+        this.quantityLocationZ = quantityLocationZ;
+        this.quantityBottleMax = quantityBottleMax;
     }
 
     public Cellar() {

@@ -11,10 +11,10 @@ import java.util.Optional;
 @Component
 public class CellarPlaceMapper {
     public CellarPlaceDto convertToDto(Optional<CellarPlace> cellarPlace) {
-        return new CellarPlaceDto(cellarPlace.get().getCellar_place_id(), cellarPlace.get().getPosition_x(), cellarPlace.get().getPosition_y(), cellarPlace.get().getPosition_z(), cellarPlace.get().getPosition_opt(), cellarPlace.get().getQuantity_bottle_max(), cellarPlace.get().getQuantity_bottle_left(), cellarPlace.get().getWine(), cellarPlace.get().getCellar());
+        return new CellarPlaceDto(cellarPlace.get().getCellar_place_id(), cellarPlace.get().getPositionX(), cellarPlace.get().getPositionY(), cellarPlace.get().getPositionZ(), cellarPlace.get().getPositionOpt(), cellarPlace.get().getQuantityBottleMax(), cellarPlace.get().getQuantityBottleLeft(), cellarPlace.get().getWine().getWine_id(), cellarPlace.get().getCellar().getCellar_id());
     }
 
     public CellarPlace convertToEntity(CellarPlaceDto cellarPlaceDto, Wine wine, Cellar cellar) {
-        return new CellarPlace(cellarPlaceDto.getPosition_x(), cellarPlaceDto.getPosition_y(), cellarPlaceDto.getPosition_z(), cellarPlaceDto.getPosition_opt(), cellarPlaceDto.getQuantity_bottle_max(), cellarPlaceDto.getQuantity_bottle_left(), wine, cellar);
+        return new CellarPlace(cellarPlaceDto.getPositionX(), cellarPlaceDto.getPositionY(), cellarPlaceDto.getPositionZ(), cellarPlaceDto.getPositionOpt(), cellarPlaceDto.getQuantityBottleMax(), cellarPlaceDto.getQuantityBottleLeft(), wine, cellar);
     }
 }

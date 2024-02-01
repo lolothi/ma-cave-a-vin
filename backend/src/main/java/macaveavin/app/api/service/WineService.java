@@ -46,7 +46,7 @@ public class WineService {
         return Optional.ofNullable(wineMapper.convertToDto(Optional.of(wine)));
     }
 
-    public WineDto saveWine(WineDto wineDto) {
+    public WineDto createNewWine(WineDto wineDto) {
         wineRepository.save(wineMapper.convertToEntity(wineDto));
         return wineDto;
     }

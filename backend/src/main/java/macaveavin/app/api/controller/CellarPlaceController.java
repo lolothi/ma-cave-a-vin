@@ -30,8 +30,8 @@ public class CellarPlaceController {
     }
 
     @PostMapping("/cellarplace")
-    public CellarPlaceDto saveCellarPlace(@RequestBody CellarPlaceDto newCellarPlaceDto) {
-        return cellarPlaceService.saveCellarPlace(newCellarPlaceDto);
+    public CellarPlaceDto createNewCellarPlace(@RequestBody CellarPlaceDto newCellarPlaceDto) {
+        return cellarPlaceService.createNewCellarPlace(newCellarPlaceDto);
     }
 
     @DeleteMapping("/cellarplace/{id}")

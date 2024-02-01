@@ -25,14 +25,14 @@ public class WineController {
     public List<WineDto> getWines() {
         //for tests
         if (wineService.getWines().isEmpty()) {
-            wineService.saveWine(new WineDto(1L, "Château Margaux", 2010, WineTypeEnum.RED, "France",
+            wineService.createNewWine(new WineDto(1L, "Château Margaux", 2010, WineTypeEnum.RED, "France",
                     "Château Margaux", "Cabernet Sauvignon", "Grand Cru Classé", "1234567890123",
                     "image1.jpg", "Grilled meats", 95, "A classic Bordeaux wine", "Premium",
                     100, 50));
-            wineService.saveWine(new WineDto(2L, "Barolo Riserva", 2012, WineTypeEnum.RED, "Italy", "Ceretto",
+            wineService.createNewWine(new WineDto(2L, "Barolo Riserva", 2012, WineTypeEnum.RED, "Italy", "Ceretto",
                     "Nebbiolo", "Riserva", "2345678901234", "image2.jpg",
                     "Pasta with truffle sauce", 93, "A rich and robust Barolo", "Reserve", 75, 25));
-            wineService.saveWine(new WineDto(3L, "Riesling Spätlese", 2015, WineTypeEnum.WHITE, "Germany",
+            wineService.createNewWine(new WineDto(3L, "Riesling Spätlese", 2015, WineTypeEnum.WHITE, "Germany",
                     "Dr. Loosen", "Riesling", "Spätlese", "3456789012345", "image3.jpg",
                     "Spicy Thai cuisine", 88, "A sweet and aromatic Riesling", "Sweet", 50, 20));
 
@@ -51,8 +51,8 @@ public class WineController {
     }
 
     @PostMapping("/wine")
-    public WineDto saveWine(@RequestBody WineDto newWineDto) {
-        return wineService.saveWine(newWineDto);
+    public WineDto createNewWine(@RequestBody WineDto newWineDto) {
+        return wineService.createNewWine(newWineDto);
     }
 
     @DeleteMapping("/wine/{id}")

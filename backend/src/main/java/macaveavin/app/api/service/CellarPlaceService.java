@@ -4,6 +4,7 @@ import macaveavin.app.api.dto.CellarPlaceDto;
 import macaveavin.app.api.entity.Cellar;
 import macaveavin.app.api.entity.CellarPlace;
 import macaveavin.app.api.entity.Wine;
+import macaveavin.app.api.repository.CellarPlaceNotEmptyException;
 import macaveavin.app.api.repository.CellarPlaceRepository;
 import macaveavin.app.api.repository.CellarRepository;
 import macaveavin.app.api.repository.WineRepository;
@@ -36,25 +37,25 @@ public class CellarPlaceService {
     }
 
     public Optional<CellarPlaceDto> getCellarPlace(Long id){
-        Optional<CellarPlace> myWine = cellarPlaceRepository.findById(id);
-        if (myWine.isPresent()) {
-            return Optional.ofNullable(cellarPlaceMapper.convertToDto(myWine));
+        Optional<CellarPlace> cellarPlace = cellarPlaceRepository.findById(id);
+        if (cellarPlace.isPresent()) {
+            return Optional.ofNullable(cellarPlaceMapper.convertToDto(cellarPlace));
         }
         return Optional.empty();
     }
 
     public Optional<CellarPlaceDto> updateCellarPlace(CellarPlaceDto updatedCellarPlaceDto, Long id){
         CellarPlace cellarPlace = cellarPlaceRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Erreur id:" + id));
-        cellarPlace.setPosition_x(updatedCellarPlaceDto.getPosition_x());
-        cellarPlace.setPosition_y(updatedCellarPlaceDto.getPosition_y());
-        cellarPlace.setPosition_z(updatedCellarPlaceDto.getPosition_z());
-        cellarPlace.setPosition_opt(updatedCellarPlaceDto.getPosition_opt());
-        cellarPlace.setQuantity_bottle_max(updatedCellarPlaceDto.getQuantity_bottle_max());
-        cellarPlace.setQuantity_bottle_left(updatedCellarPlaceDto.getQuantity_bottle_left());
+        cellarPlace.setPositionX(updatedCellarPlaceDto.getPositionX());
+        cellarPlace.setPositionY(updatedCellarPlaceDto.getPositionY());
+        cellarPlace.setPositionZ(updatedCellarPlaceDto.getPositionZ());
+        cellarPlace.setPositionOpt(updatedCellarPlaceDto.getPositionOpt());
+        cellarPlace.setQuantityBottleMax(updatedCellarPlaceDto.getQuantityBottleMax());
+        cellarPlace.setQuantityBottleLeft(updatedCellarPlaceDto.getQuantityBottleLeft());
 
-        Optional<Wine> optionalWine = wineRepository.findById(updatedCellarPlaceDto.getWine().getWine_id());
+        Optional<Wine> optionalWine = wineRepository.findById(updatedCellarPlaceDto.getWineId());
         Wine wine = optionalWine.orElse(null);
-        Optional<Cellar> optionalCellar = cellarRepository.findById(updatedCellarPlaceDto.getCellar().getCellar_id());
+        Optional<Cellar> optionalCellar = cellarRepository.findById(updatedCellarPlaceDto.getCellarId());
         Cellar cellar = optionalCellar.orElse(null);
 
         if (wine != null && cellar != null) {
@@ -69,22 +70,27 @@ public class CellarPlaceService {
         return Optional.empty();
     }
 
-    public CellarPlaceDto saveCellarPlace(CellarPlaceDto cellarPlaceDto) {
-        Optional<Wine> optionalWine = wineRepository.findById(cellarPlaceDto.getWine().getWine_id());
-        Optional<Cellar> optionalCellar = cellarRepository.findById(cellarPlaceDto.getCellar().getCellar_id());
-        Wine wine = optionalWine.orElse(null);
-        Cellar cellar = optionalCellar.orElse(null);
+    public CellarPlaceDto createNewCellarPlace(CellarPlaceDto cellarPlaceDto) {
+        if (cellarPlaceRepository.getCellarPlaceByPosition(cellarPlaceDto.getPositionX(), cellarPlaceDto.getPositionY(), cellarPlaceDto.getPositionZ()).isEmpty()) {
+            Optional<Wine> optionalWine = wineRepository.findById(cellarPlaceDto.getWineId());
+            Optional<Cellar> optionalCellar = cellarRepository.findById(cellarPlaceDto.getCellarId());
+            Wine wine = optionalWine.orElse(null);
+            Cellar cellar = optionalCellar.orElse(null);
 
-        if (wine != null && cellar != null) {
-            cellarPlaceRepository.save(cellarPlaceMapper.convertToEntity(cellarPlaceDto, wine, cellar));
-            return cellarPlaceDto;
+            if (wine != null && cellar != null) {
+                cellarPlaceRepository.save(cellarPlaceMapper.convertToEntity(cellarPlaceDto, wine, cellar));
+                return cellarPlaceDto;
+            }
+        } else {
+            throw new CellarPlaceNotEmptyException("L'emplacement n'est pas vide.");
         }
+
         return null;
     }
 
     public String deleteCellarPlace(Long id) {
         CellarPlace cellarPlace = cellarPlaceRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Erreur id:" + id));
         cellarPlaceRepository.delete(cellarPlace);
-        return "Vin supprimé";
+        return "Emplacement de bouteille supprimé";
     }
 }

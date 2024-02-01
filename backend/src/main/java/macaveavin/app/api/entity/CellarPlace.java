@@ -12,22 +12,22 @@ public class CellarPlace {
     private Long cellar_place_id;
 
     @Column(name = "position_x")
-    private Integer position_x;
+    private Integer positionX;
 
     @Column(name = "position_y")
-    private Integer position_y;
+    private Integer positionY;
 
     @Column(name = "position_z")
-    private Integer position_z;
+    private Integer positionZ;
 
     @Column(name = "position_opt")
-    private String position_opt; //update later for real position
+    private String positionOpt; //update later for real position
 
     @Column(name = "quantity_bottle_max")
-    private Integer quantity_bottle_max;
+    private Integer quantityBottleMax;
 
     @Column(name = "quantity_bottle_left")
-    private Integer quantity_bottle_left;
+    private Integer quantityBottleLeft;
 
     @ManyToOne
     @JoinColumn(name = "wine_id")
@@ -37,13 +37,13 @@ public class CellarPlace {
     @JoinColumn(name = "cellar_id")
     private Cellar cellar;
 
-    public CellarPlace(Integer position_x, Integer position_y, Integer position_z, String position_opt, Integer quantity_bottle_max, Integer quantity_bottle_left, Wine wine, Cellar cellar) {
-        this.position_x = position_x;
-        this.position_y = position_y;
-        this.position_z = position_z;
-        this.position_opt = position_opt;
-        this.quantity_bottle_max = quantity_bottle_max;
-        this.quantity_bottle_left = quantity_bottle_left;
+    public CellarPlace(Integer positionX, Integer positionY, Integer positionZ, String positionOpt, Integer quantityBottleMax, Integer quantityBottleLeft, Wine wine, Cellar cellar) {
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.positionZ = positionZ;
+        this.positionOpt = positionOpt;
+        this.quantityBottleMax = quantityBottleMax;
+        this.quantityBottleLeft = quantityBottleLeft;
         this.wine = wine;
         this.cellar = cellar;
     }
