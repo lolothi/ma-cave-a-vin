@@ -9,7 +9,7 @@ import lombok.Data;
 public class CellarPlace {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cellar_place_id;
+    private Long cellarPlaceId;
 
     @Column(name = "position_x")
     private Integer positionX;

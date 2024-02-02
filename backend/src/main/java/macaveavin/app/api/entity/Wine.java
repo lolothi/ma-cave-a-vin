@@ -74,12 +74,12 @@ public class Wine {
         this.designation = designation;
     }
 
-    public void setPictureLink(String picture_link) {
-        this.pictureLink = picture_link;
+    public void setPictureLink(String pictureLink) {
+        this.pictureLink = pictureLink;
     }
 
-    public void setWithFood(String with_food) {
-        this.withFood = with_food;
+    public void setWithFood(String withFood) {
+        this.withFood = withFood;
     }
 
     public void setNote(Integer note) {
@@ -90,8 +90,8 @@ public class Wine {
         this.name = name;
     }
 
-    public void setAvailableYear(Integer available_year) {
-        this.availableYear = available_year;
+    public void setAvailableYear(Integer availableYear) {
+        this.availableYear = availableYear;
     }
 
     public void setCountry(String country) {
@@ -110,12 +110,12 @@ public class Wine {
         this.type = type;
     }
 
-    public void setQuantityTot(Integer quantity_tot) {
-        this.quantityTot = quantity_tot;
+    public void setQuantityTot(Integer quantityTot) {
+        this.quantityTot = quantityTot;
     }
 
-    public void setQuantityInWineCellar(Integer quantity_in_wine_Cellar) {
-        this.quantityInWineCellar = quantity_in_wine_Cellar;
+    public void setQuantityInWineCellar(Integer quantityInWineCellar) {
+        this.quantityInWineCellar = quantityInWineCellar;
     }
 
     public Wine(String name, Integer availableYear, WineTypeEnum type, String country, String producer, String variety, String designation, String ean, String pictureLink, String withFood, Integer note, String comments, String tag, Integer quantityTot, Integer quantityInWineCellar) {
