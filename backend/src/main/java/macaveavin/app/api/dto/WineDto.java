@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.Getter;
 import macaveavin.app.api.entity.WineTypeEnum;
 
-@Getter
 @Data
 public class WineDto {
 
@@ -40,7 +39,69 @@ public class WineDto {
 
     private Integer quantityInWineCellar;
 
+    public Long getWineId() {
+        return wineId;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public Integer getAvailableYear() {
+        return availableYear;
+    }
+
+    public WineTypeEnum getType() {
+        return type;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getProducer() {
+        return producer;
+    }
+
+    public String getVariety() {
+        return variety;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public String getEan() {
+        return ean;
+    }
+
+    public String getPictureLink() {
+        return pictureLink;
+    }
+
+    public String getWithFood() {
+        return withFood;
+    }
+
+    public Integer getNote() {
+        return note;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public Integer getQuantityTot() {
+        return quantityTot;
+    }
+
+    public Integer getQuantityInWineCellar() {
+        return quantityInWineCellar;
+    }
 
     public void setWineId(Long wineId) {
         this.wineId = wineId;

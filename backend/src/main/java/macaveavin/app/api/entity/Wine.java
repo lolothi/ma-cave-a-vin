@@ -11,6 +11,7 @@ import lombok.Getter;
 public class Wine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name= "wine_id")
     private Long wineId;
 
     @Column(name= "name")

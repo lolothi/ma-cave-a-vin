@@ -7,6 +7,7 @@ import macaveavin.app.api.service.mapper.WineMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,6 +20,9 @@ public class WineService {
 
     @Autowired
     private WineMapper wineMapper;
+
+    @Autowired
+    private SharedServices sharedServices;
 
     public List<WineDto> getWines() {
         return ((List<Wine>) wineRepository.findAll()).stream()
@@ -36,12 +40,7 @@ public class WineService {
 
     public Optional<WineDto> updateWine(WineDto updatedWineDto, Long id){
         Wine wine = wineRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Erreur id:" + id));
-        wine.setName(updatedWineDto.getName());
-        wine.setAvailableYear(updatedWineDto.getAvailableYear());
-        wine.setType(updatedWineDto.getType());
-        wine.setCountry(updatedWineDto.getCountry());
-        wine.setEan(updatedWineDto.getEan());
-        wine.setComments(updatedWineDto.getComments());
+        sharedServices.updateFields(wine, updatedWineDto);
         wineRepository.save(wine);
         return Optional.ofNullable(wineMapper.convertToDto(Optional.of(wine)));
     }
