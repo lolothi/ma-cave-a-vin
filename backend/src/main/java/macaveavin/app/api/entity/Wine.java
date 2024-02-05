@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 
+import java.util.Set;
+
 @Getter
 @Entity
 @Table(name= "wine")
@@ -59,65 +61,8 @@ public class Wine {
     @Column(name= "quantity_in_wine_Cellar")
     private Integer quantityInWineCellar;
 
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
-
-    public void setProducer(String producer) {
-        this.producer = producer;
-    }
-
-    public void setVariety(String variety) {
-        this.variety = variety;
-    }
-
-    public void setDesignation(String designation) {
-        this.designation = designation;
-    }
-
-    public void setPictureLink(String pictureLink) {
-        this.pictureLink = pictureLink;
-    }
-
-    public void setWithFood(String withFood) {
-        this.withFood = withFood;
-    }
-
-    public void setNote(Integer note) {
-        this.note = note;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAvailableYear(Integer availableYear) {
-        this.availableYear = availableYear;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public void setEan(String ean) {
-        this.ean = ean;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
-
-    public void setType(WineTypeEnum type) {
-        this.type = type;
-    }
-
-    public void setQuantityTot(Integer quantityTot) {
-        this.quantityTot = quantityTot;
-    }
-
-    public void setQuantityInWineCellar(Integer quantityInWineCellar) {
-        this.quantityInWineCellar = quantityInWineCellar;
-    }
+    @ManyToMany(mappedBy = "wines")
+    private Set<CellarPlace> cellarPlaces;
 
     public Wine(String name, Integer availableYear, WineTypeEnum type, String country, String producer, String variety, String designation, String ean, String pictureLink, String withFood, Integer note, String comments, String tag, Integer quantityTot, Integer quantityInWineCellar) {
         this.name = name;

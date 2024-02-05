@@ -3,13 +3,15 @@ package macaveavin.app.api.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "cellarPlace")
 @Data
 public class CellarPlace {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cellarPlaceId;
+    private Long cellar_place_id;
 
     @Column(name = "position_x")
     private Integer positionX;
@@ -26,28 +28,29 @@ public class CellarPlace {
     @Column(name = "quantity_bottle_max")
     private Integer quantityBottleMax;
 
-    @Column(name = "quantity_bottle_left")
-    private Integer quantityBottleLeft;
-
-    @ManyToOne
-    @JoinColumn(name = "wine_id")
-    private Wine wine;
-
     @ManyToOne
     @JoinColumn(name = "cellar_id")
     private Cellar cellar;
 
-    public CellarPlace(Integer positionX, Integer positionY, Integer positionZ, String positionOpt, Integer quantityBottleMax, Integer quantityBottleLeft, Wine wine, Cellar cellar) {
+    @ManyToMany
+    @JoinTable(
+            name = "cellar_place_wine",
+            joinColumns = @JoinColumn(name = "cellar_place_id"),
+            inverseJoinColumns = @JoinColumn(name = "wine_id")
+    )
+    private Set<Wine> wines;
+
+    public CellarPlace(Integer positionX, Integer positionY, Integer positionZ, String positionOpt, Integer quantityBottleMax, Cellar cellar, Set<Wine> wines) {
         this.positionX = positionX;
         this.positionY = positionY;
         this.positionZ = positionZ;
         this.positionOpt = positionOpt;
         this.quantityBottleMax = quantityBottleMax;
-        this.quantityBottleLeft = quantityBottleLeft;
-        this.wine = wine;
         this.cellar = cellar;
+        this.wines = wines;
     }
 
     public CellarPlace() {
     }
+
 }

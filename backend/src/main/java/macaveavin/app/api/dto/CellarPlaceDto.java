@@ -1,8 +1,10 @@
 package macaveavin.app.api.dto;
 
 import lombok.Getter;
-import macaveavin.app.api.entity.Cellar;
 import macaveavin.app.api.entity.Wine;
+
+import java.util.List;
+import java.util.Set;
 
 @Getter
 public class CellarPlaceDto {
@@ -13,8 +15,8 @@ public class CellarPlaceDto {
     private Integer positionZ;
     private String positionOpt;
     private Integer quantityBottleMax;
-    private Integer quantityBottleLeft;
-    private Long wineId;
+    private final Integer quantityBottle;
+    private final Set<Wine> wines;
     private Long cellarId;
 
 
@@ -38,32 +40,23 @@ public class CellarPlaceDto {
         this.positionOpt = positionOpt;
     }
 
-    public void setPosition_bottle_max(Integer quantity_bottle_max) {
-        this.quantityBottleMax = quantity_bottle_max;
-    }
-
-    public void setPosition_bottle_left(Integer quantity_bottle_left) {
-        this.quantityBottleLeft = quantity_bottle_left;
-    }
-
-    public void setWineId(Long wineId) {
-        this.wineId = wineId;
+    public void setQuantityBottleMax(Integer quantityBottleMax) {
+        this.quantityBottleMax = quantityBottleMax;
     }
 
     public void setCellarId(Long cellarId) {
         this.cellarId = cellarId;
     }
 
-    public CellarPlaceDto(Long cellarPlaceId, Integer positionX, Integer positionY, Integer positionZ, String positionOpt, Integer quantityBottleMax, Integer quantityBottleLeft, Long wineId, Long cellarId) {
+    public CellarPlaceDto(Long cellarPlaceId, Integer positionX, Integer positionY, Integer positionZ, String positionOpt, Integer quantityBottleMax, Integer quantityBottle, Set<Wine> wines, Long cellarId) {
         this.cellarPlaceId = cellarPlaceId;
         this.positionX = positionX;
         this.positionY = positionY;
         this.positionZ = positionZ;
         this.positionOpt = positionOpt;
         this.quantityBottleMax = quantityBottleMax;
-        this.quantityBottleLeft = quantityBottleLeft;
-        this.wineId = wineId;
+        this.quantityBottle = quantityBottle;
+        this.wines = wines;
         this.cellarId = cellarId;
     }
-
 }

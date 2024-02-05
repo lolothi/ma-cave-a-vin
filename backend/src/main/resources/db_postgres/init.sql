@@ -36,10 +36,17 @@ CREATE TABLE cellar_place (
     position_z integer,
     position_opt varchar(100),
     quantity_bottle_max integer DEFAULT 0,
-    quantity_bottle_left integer DEFAULT 0,
-    wine_id integer,
     cellar_id integer,
     primary KEY(cellar_place_id),
-    CONSTRAINT wine_FK FOREIGN KEY (wine_id) REFERENCES wine(wine_id),
     CONSTRAINT cellar_FK FOREIGN KEY (cellar_id) REFERENCES cellar(cellar_id)
+);
+-- table de liaison
+CREATE TABLE cellar_place_wine (
+                                   cellar_place_wine_id integer generated always as IDENTITY,
+                                   cellar_place_id integer,
+                                   wine_id integer,
+                                   quantity_bottle integer DEFAULT 0,
+                                   PRIMARY KEY (cellar_place_id, wine_id),
+                                   FOREIGN KEY (cellar_place_id) REFERENCES cellar_place(cellar_place_id),
+                                   FOREIGN KEY (wine_id) REFERENCES wine(wine_id)
 );
