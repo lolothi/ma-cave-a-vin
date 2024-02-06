@@ -23,7 +23,7 @@ public class CellarPlaceMapper {
         return new CellarPlaceDto(cellarPlace.get().getCellar_place_id(), cellarPlace.get().getPositionX(), cellarPlace.get().getPositionY(), cellarPlace.get().getPositionZ(), cellarPlace.get().getPositionOpt(), cellarPlace.get().getQuantityBottleMax(), quantityOfBottles, cellarPlace.get().getWines(), cellarPlace.get().getCellar().getCellar_id());
     }
 
-    public CellarPlace convertToEntity(CellarPlaceDto cellarPlaceDto, Cellar cellar, ) {
+    public CellarPlace convertToEntity(CellarPlaceDto cellarPlaceDto, Cellar cellar) {
         return new CellarPlace(cellarPlaceDto.getPositionX(), cellarPlaceDto.getPositionY(), cellarPlaceDto.getPositionZ(), cellarPlaceDto.getPositionOpt(), cellarPlaceDto.getQuantityBottleMax(), cellar, Set<Wine> wines);
     }
 

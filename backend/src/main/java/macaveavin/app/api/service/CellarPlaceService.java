@@ -3,11 +3,13 @@ package macaveavin.app.api.service;
 import macaveavin.app.api.dto.CellarPlaceDto;
 import macaveavin.app.api.entity.Cellar;
 import macaveavin.app.api.entity.CellarPlace;
+import macaveavin.app.api.entity.CellarPlaceWine;
 import macaveavin.app.api.entity.Wine;
 import macaveavin.app.api.repository.*;
 import macaveavin.app.api.service.mapper.CellarPlaceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -29,10 +31,7 @@ public class CellarPlaceService {
     private CellarRepository cellarRepository;
 
     @Autowired
-    private SharedServices sharedServices;
-
-
-
+    private CellarPlaceWineRepository cellarPlaceWineRepository;
 
     public List<CellarPlaceDto> getCellarPlaces() {
         return ((List<CellarPlace>) cellarPlaceRepository.findAll()).stream().filter(Objects::nonNull)
@@ -66,13 +65,6 @@ public class CellarPlaceService {
         if (updatedCellarPlaceDto.getQuantityBottleMax() != null) {
             cellarPlace.setQuantityBottleMax(updatedCellarPlaceDto.getQuantityBottleMax());
         }
-/*        if (updatedCellarPlaceDto.getQuantityBottleLeft() != null) {
-            cellarPlace.setQuantityBottleLeft(updatedCellarPlaceDto.getQuantityBottleLeft());
-        }*/
-/*        if (updatedCellarPlaceDto.getWineId() != null) {
-            Optional<Wine> optionalWine = wineRepository.findById(updatedCellarPlaceDto.getWineId());
-            optionalWine.ifPresent(cellarPlace::setWine);
-        }*/
         if (updatedCellarPlaceDto.getCellarId() != null) {
             Optional<Cellar> optionalCellar = cellarRepository.findById(updatedCellarPlaceDto.getCellarId());
             optionalCellar.ifPresent(cellarPlace::setCellar);
@@ -82,26 +74,39 @@ public class CellarPlaceService {
     }
 
     /**
-     * Create new cellar place for a bottle or a group of bottles. Is checking if the cellar place is empty
+     * Create new cellar place for a bottle or a group of bottles.
+     * Check in first if enough place in cellar Place.
      * @param cellarPlaceDto
      * @return
      */
+    @Transactional
     public CellarPlaceDto createNewCellarPlace(CellarPlaceDto cellarPlaceDto) {
-        if (cellarPlaceRepository.getCellarPlaceByPosition(cellarPlaceDto.getPositionX(), cellarPlaceDto.getPositionY(), cellarPlaceDto.getPositionZ()).isEmpty()) {
-            Optional<Wine> optionalWine = wineRepository.findById(cellarPlaceDto.getWineId());
-            Optional<Cellar> optionalCellar = cellarRepository.findById(cellarPlaceDto.getCellarId());
-            Wine wine = optionalWine.orElse(null);
-            Cellar cellar = optionalCellar.orElse(null);
-
-            if (wine != null && cellar != null) {
-                cellarPlaceRepository.save(cellarPlaceMapper.convertToEntity(cellarPlaceDto, wine, cellar));
-                return cellarPlaceDto;
+        Cellar cellar = cellarRepository.findById(cellarPlaceDto.getCellarId()).orElse(null);
+        if (cellar != null) {
+            // Check if enough place in cellar Place :
+            if (cellarPlaceWineRepository.getBottlesQuantityByCellarPlaceByPosition(cellar.getCellar_id()) >= cellar.getQuantityBottleMax()) {
+                try {
+                    CellarPlace cellarPlace = cellarPlaceMapper.convertToEntity(cellarPlaceDto, cellar);
+                    cellarPlaceRepository.save(cellarPlace);
+                    for (Wine newWineInCellarPlace : cellarPlaceDto.getWines()) {
+                        Optional<Wine> optionalWine = wineRepository.findById(newWineInCellarPlace.getWineId());
+                        Wine wine = optionalWine.orElse(null);
+                        if (wine != null) {
+                            CellarPlaceWine cellarPlaceWine = new CellarPlaceWine(cellarPlace, wine, cellarPlaceDto.getQuantityBottle());
+                            cellarPlaceWineRepository.save(cellarPlaceWine);
+                        } else {
+                            throw new RuntimeException("Pas de vin dans la création");
+                        }
+                    }
+                    return cellarPlaceDto;
+                } catch (Exception e) {
+                    throw new RuntimeException("Une erreur s'est produite lors de la sauvegarde de la cave.", e);
+                }
             } else {
-                throw new CellarPlaceNotEmptyException("Erreur vin et/ou cave");
+                throw new CellarPlaceNotEmptyException("Plus de place dans l'emplacement");
             }
-        } else {
-            throw new CellarPlaceNotEmptyException("L'emplacement n'est pas vide.");
         }
+        return null;
     }
 
     public String deleteCellarPlace(Long id) {

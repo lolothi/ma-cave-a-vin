@@ -20,7 +20,11 @@ public class CellarPlaceWine {
     private Wine wine;
 
     @Column(name = "quantity_bottles")
-    private Integer quantityBottles;
+    private Integer quantityBottle;
 
-
+    public CellarPlaceWine(CellarPlace cellarPlace, Wine wine, Integer quantityBottle) {
+        this.cellarPlace = cellarPlace;
+        this.wine = wine;
+        this.quantityBottle = quantityBottle;
+    }
 }
