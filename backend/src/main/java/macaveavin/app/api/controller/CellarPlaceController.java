@@ -31,7 +31,10 @@ public class CellarPlaceController {
 
     @PostMapping("/cellarplace")
     public CellarPlaceDto createNewCellarPlace(@RequestBody CellarPlaceDto newCellarPlaceDto) {
-        return cellarPlaceService.createNewCellarPlace(newCellarPlaceDto);
+        System.out.println("newCellarPlaceDto: "+newCellarPlaceDto);
+        CellarPlaceDto cellarPlaceDto = cellarPlaceService.createNewCellarPlace(newCellarPlaceDto);
+        return newCellarPlaceDto;
+//        return cellarPlaceService.createNewCellarPlace(newCellarPlaceDto);
     }
 
     @DeleteMapping("/cellarplace/{id}")

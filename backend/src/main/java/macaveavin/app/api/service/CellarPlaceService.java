@@ -84,16 +84,20 @@ public class CellarPlaceService {
         Cellar cellar = cellarRepository.findById(cellarPlaceDto.getCellarId()).orElse(null);
         if (cellar != null) {
             // Check if enough place in cellar Place :
-            if (cellarPlaceWineRepository.getBottlesQuantityByCellarPlaceByPosition(cellar.getCellar_id()) >= cellar.getQuantityBottleMax()) {
+            if (cellarPlaceWineRepository.getBottlesQuantityByCellarPlaceByPosition(cellar.getCellar_id()) <= cellar.getQuantityBottleMax()) {
                 try {
                     CellarPlace cellarPlace = cellarPlaceMapper.convertToEntity(cellarPlaceDto, cellar);
                     cellarPlaceRepository.save(cellarPlace);
                     for (Wine newWineInCellarPlace : cellarPlaceDto.getWines()) {
-                        Optional<Wine> optionalWine = wineRepository.findById(newWineInCellarPlace.getWineId());
-                        Wine wine = optionalWine.orElse(null);
-                        if (wine != null) {
-                            CellarPlaceWine cellarPlaceWine = new CellarPlaceWine(cellarPlace, wine, cellarPlaceDto.getQuantityBottle());
-                            cellarPlaceWineRepository.save(cellarPlaceWine);
+                        Wine newWine = wineRepository.findById(newWineInCellarPlace.getWineId()).orElse(null);
+                        if (newWine != null) {
+                            CellarPlaceWine cellarPlaceWine = new CellarPlaceWine(cellarPlace, newWine, cellarPlaceDto.getQuantityBottle());
+//                            System.out.println("---- CHECK Save cellarPlaceWine -----"+cellarPlaceWine.getCellarPlace().getCellar_place_id()+" "+cellarPlaceWine.getWine().getWineId());
+//                            if (!cellarPlaceWineRepository.existsByCellarPlaceIdAndWineId(cellarPlaceWine.getCellarPlace().getCellar_place_id(), cellarPlaceWine.getWine().getWineId())) {
+//                                System.out.println("---- Save cellarPlaceWine -----"+cellarPlaceWine);
+                                cellarPlaceWineRepository.save(cellarPlaceWine);
+//                            }
+
                         } else {
                             throw new RuntimeException("Pas de vin dans la création");
                         }

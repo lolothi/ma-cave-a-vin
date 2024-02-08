@@ -19,12 +19,16 @@ public class CellarPlaceWine {
     @JoinColumn(name = "wine_id")
     private Wine wine;
 
-    @Column(name = "quantity_bottles")
+    @Column(name = "quantity_bottle")
     private Integer quantityBottle;
 
     public CellarPlaceWine(CellarPlace cellarPlace, Wine wine, Integer quantityBottle) {
         this.cellarPlace = cellarPlace;
         this.wine = wine;
         this.quantityBottle = quantityBottle;
+    }
+
+    public CellarPlaceWine() {
+
     }
 }

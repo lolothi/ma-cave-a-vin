@@ -15,8 +15,9 @@ public class CellarPlaceDto {
     private Integer positionZ;
     private String positionOpt;
     private Integer quantityBottleMax;
-    private final Integer quantityBottle;
+    private Integer quantityBottle;
     private final Set<Wine> wines;
+//    private Long wineId;
     private Long cellarId;
 
 
@@ -48,6 +49,15 @@ public class CellarPlaceDto {
         this.cellarId = cellarId;
     }
 
+    public void setQuantityBottle(Integer quantityBottle) {
+
+        this.quantityBottle = quantityBottle;
+    }
+
+//    public void setWineId(Long wineId) {
+//        this.wineId = wineId;
+//    }
+
     public CellarPlaceDto(Long cellarPlaceId, Integer positionX, Integer positionY, Integer positionZ, String positionOpt, Integer quantityBottleMax, Integer quantityBottle, Set<Wine> wines, Long cellarId) {
         this.cellarPlaceId = cellarPlaceId;
         this.positionX = positionX;
@@ -57,6 +67,7 @@ public class CellarPlaceDto {
         this.quantityBottleMax = quantityBottleMax;
         this.quantityBottle = quantityBottle;
         this.wines = wines;
+//        this.wineId = wineId;
         this.cellarId = cellarId;
     }
 }

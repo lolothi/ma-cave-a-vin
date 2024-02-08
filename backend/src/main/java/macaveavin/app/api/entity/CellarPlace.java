@@ -32,22 +32,21 @@ public class CellarPlace {
     @JoinColumn(name = "cellar_id")
     private Cellar cellar;
 
-    @ManyToMany
+/*    @ManyToMany
     @JoinTable(
             name = "cellar_place_wine",
             joinColumns = @JoinColumn(name = "cellar_place_id"),
             inverseJoinColumns = @JoinColumn(name = "wine_id")
     )
-    private Set<Wine> wines;
+    private Set<Wine> wines;*/
 
-    public CellarPlace(Integer positionX, Integer positionY, Integer positionZ, String positionOpt, Integer quantityBottleMax, Cellar cellar, Set<Wine> wines) {
+    public CellarPlace(Integer positionX, Integer positionY, Integer positionZ, String positionOpt, Integer quantityBottleMax, Cellar cellar) {
         this.positionX = positionX;
         this.positionY = positionY;
         this.positionZ = positionZ;
         this.positionOpt = positionOpt;
         this.quantityBottleMax = quantityBottleMax;
         this.cellar = cellar;
-        this.wines = wines;
     }
 
     public CellarPlace() {
