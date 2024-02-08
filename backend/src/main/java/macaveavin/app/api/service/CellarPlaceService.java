@@ -79,8 +79,25 @@ public class CellarPlaceService {
      * @param cellarPlaceDto
      * @return
      */
-    @Transactional
     public CellarPlaceDto createNewCellarPlace(CellarPlaceDto cellarPlaceDto) {
+        Cellar cellar = cellarRepository.findById(cellarPlaceDto.getCellarId()).orElse(null);
+        if (cellar != null) {
+            // Check if enough place in cellar Place :
+            if (cellarPlaceRepository.getCellarPlaceByPosition(cellarPlaceDto.getPositionX(), cellarPlaceDto.getPositionY(), cellarPlaceDto.getPositionZ()).isEmpty()) {
+                try {
+                    CellarPlace cellarPlace = cellarPlaceMapper.convertToEntity(cellarPlaceDto, cellar);
+                    return cellarPlaceMapper.convertToDto(Optional.of(cellarPlaceRepository.save(cellarPlace)));
+                } catch (Exception e) {
+                    throw new RuntimeException("Une erreur s'est produite lors de la sauvegarde de la cave.", e);
+                }
+            } else {
+                throw new CellarPlaceNotEmptyException("Emplacement déja utilisé");
+            }
+        }
+        return null;
+    }
+
+/*    public CellarPlaceDto createNewCellarPlace(CellarPlaceDto cellarPlaceDto) {
         Cellar cellar = cellarRepository.findById(cellarPlaceDto.getCellarId()).orElse(null);
         if (cellar != null) {
             // Check if enough place in cellar Place :
@@ -95,7 +112,7 @@ public class CellarPlaceService {
 //                            System.out.println("---- CHECK Save cellarPlaceWine -----"+cellarPlaceWine.getCellarPlace().getCellar_place_id()+" "+cellarPlaceWine.getWine().getWineId());
 //                            if (!cellarPlaceWineRepository.existsByCellarPlaceIdAndWineId(cellarPlaceWine.getCellarPlace().getCellar_place_id(), cellarPlaceWine.getWine().getWineId())) {
 //                                System.out.println("---- Save cellarPlaceWine -----"+cellarPlaceWine);
-                                cellarPlaceWineRepository.save(cellarPlaceWine);
+                            cellarPlaceWineRepository.save(cellarPlaceWine);
 //                            }
 
                         } else {
@@ -111,7 +128,7 @@ public class CellarPlaceService {
             }
         }
         return null;
-    }
+    }*/
 
     public String deleteCellarPlace(Long id) {
         CellarPlace cellarPlace = cellarPlaceRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Erreur id:" + id));

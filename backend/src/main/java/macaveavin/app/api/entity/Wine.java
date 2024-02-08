@@ -61,9 +61,6 @@ public class Wine {
     @Column(name= "quantity_in_wine_Cellar")
     private Integer quantityInWineCellar;
 
-    @ManyToMany(mappedBy = "wines")
-    private Set<CellarPlace> cellarPlaces;
-
     public Wine(String name, Integer availableYear, WineTypeEnum type, String country, String producer, String variety, String designation, String ean, String pictureLink, String withFood, Integer note, String comments, String tag, Integer quantityTot, Integer quantityInWineCellar) {
         this.name = name;
         this.availableYear = availableYear;

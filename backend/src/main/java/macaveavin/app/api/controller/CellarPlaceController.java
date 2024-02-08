@@ -33,13 +33,17 @@ public class CellarPlaceController {
     public CellarPlaceDto createNewCellarPlace(@RequestBody CellarPlaceDto newCellarPlaceDto) {
         System.out.println("newCellarPlaceDto: "+newCellarPlaceDto);
         CellarPlaceDto cellarPlaceDto = cellarPlaceService.createNewCellarPlace(newCellarPlaceDto);
-        return newCellarPlaceDto;
-//        return cellarPlaceService.createNewCellarPlace(newCellarPlaceDto);
+        return cellarPlaceService.createNewCellarPlace(newCellarPlaceDto);
     }
 
     @DeleteMapping("/cellarplace/{id}")
     public String deleteCellarPlace(@PathVariable Long id) {
         return cellarPlaceService.deleteCellarPlace(id);
     }
+
+/*    @PatchMapping("/cellarplace/{id}")
+    public Optional<CellarPlaceDto> updateCellarPlace(@RequestBody CellarPlaceDto updatedCellarPlaceDto, @PathVariable Long id) {
+        return cellarPlaceService.updateCellarPlace(updatedCellarPlaceDto, id);
+    }*/
 
 }
