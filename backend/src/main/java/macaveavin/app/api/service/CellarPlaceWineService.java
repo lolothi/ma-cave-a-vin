@@ -2,7 +2,6 @@ package macaveavin.app.api.service;
 
 import macaveavin.app.api.dto.CellarPlaceWineDto;
 import macaveavin.app.api.dto.CellarPlaceWineSetDto;
-import macaveavin.app.api.entity.Cellar;
 import macaveavin.app.api.entity.CellarPlace;
 import macaveavin.app.api.entity.CellarPlaceWine;
 import macaveavin.app.api.entity.Wine;
@@ -29,8 +28,6 @@ public class CellarPlaceWineService {
     @Autowired
     private WineRepository wineRepository;
 
-    @Autowired
-    private CellarRepository cellarRepository;
 
     public List<CellarPlaceWineDto> getCellarPlaceWines() {
         return ((List<CellarPlaceWine>)cellarPlaceWineRepository.findAll()).stream().map(CellarPlaceWine -> cellarPlaceWineMapper.convertToDto(Optional.ofNullable(CellarPlaceWine))).collect(Collectors.toList());

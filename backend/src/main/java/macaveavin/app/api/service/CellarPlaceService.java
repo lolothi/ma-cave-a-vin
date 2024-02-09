@@ -3,13 +3,10 @@ package macaveavin.app.api.service;
 import macaveavin.app.api.dto.CellarPlaceDto;
 import macaveavin.app.api.entity.Cellar;
 import macaveavin.app.api.entity.CellarPlace;
-import macaveavin.app.api.entity.CellarPlaceWine;
-import macaveavin.app.api.entity.Wine;
 import macaveavin.app.api.repository.*;
 import macaveavin.app.api.service.mapper.CellarPlaceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -90,39 +87,6 @@ public class CellarPlaceService {
         }
         return null;
     }
-
-/*    public CellarPlaceDto createNewCellarPlace(CellarPlaceDto cellarPlaceDto) {
-        Cellar cellar = cellarRepository.findById(cellarPlaceDto.getCellarId()).orElse(null);
-        if (cellar != null) {
-            // Check if enough place in cellar Place :
-            if (cellarPlaceWineRepository.getBottlesQuantityByCellarPlaceByPosition(cellar.getCellar_id()) <= cellar.getQuantityBottleMax()) {
-                try {
-                    CellarPlace cellarPlace = cellarPlaceMapper.convertToEntity(cellarPlaceDto, cellar);
-                    cellarPlaceRepository.save(cellarPlace);
-                    for (Wine newWineInCellarPlace : cellarPlaceDto.getWines()) {
-                        Wine newWine = wineRepository.findById(newWineInCellarPlace.getWineId()).orElse(null);
-                        if (newWine != null) {
-                            CellarPlaceWine cellarPlaceWine = new CellarPlaceWine(cellarPlace, newWine, cellarPlaceDto.getQuantityBottle());
-//                            System.out.println("---- CHECK Save cellarPlaceWine -----"+cellarPlaceWine.getCellarPlace().getCellar_place_id()+" "+cellarPlaceWine.getWine().getWineId());
-//                            if (!cellarPlaceWineRepository.existsByCellarPlaceIdAndWineId(cellarPlaceWine.getCellarPlace().getCellar_place_id(), cellarPlaceWine.getWine().getWineId())) {
-//                                System.out.println("---- Save cellarPlaceWine -----"+cellarPlaceWine);
-                            cellarPlaceWineRepository.save(cellarPlaceWine);
-//                            }
-
-                        } else {
-                            throw new RuntimeException("Pas de vin dans la création");
-                        }
-                    }
-                    return cellarPlaceDto;
-                } catch (Exception e) {
-                    throw new RuntimeException("Une erreur s'est produite lors de la sauvegarde de la cave.", e);
-                }
-            } else {
-                throw new CellarPlaceNotEmptyException("Plus de place dans l'emplacement");
-            }
-        }
-        return null;
-    }*/
 
     public String deleteCellarPlace(Long id) {
         CellarPlace cellarPlace = cellarPlaceRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Erreur id:" + id));
