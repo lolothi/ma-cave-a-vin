@@ -2,6 +2,7 @@ package macaveavin.app.api.controller;
 
 import macaveavin.app.api.dto.CellarPlaceDto;
 import macaveavin.app.api.dto.CellarPlaceWineDto;
+import macaveavin.app.api.dto.CellarPlaceWineSetDto;
 import macaveavin.app.api.service.CellarPlaceService;
 import macaveavin.app.api.service.CellarPlaceWineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,8 +63,8 @@ public class CellarPlaceController {
     }
 
     @PostMapping("/cellarplace/filling")
-    public Optional<CellarPlaceWineDto> createNewCellarPlaceWine(@RequestBody CellarPlaceWineDto cellarPlaceWineDto) {
-        return Optional.ofNullable(cellarPlaceWineService.createNewCellarPlaceWine(cellarPlaceWineDto));
+    public Optional<CellarPlaceWineDto> createNewCellarPlaceWine(@RequestBody CellarPlaceWineSetDto cellarPlaceWineSetDto) {
+        return Optional.ofNullable(cellarPlaceWineService.createNewCellarPlaceWine(cellarPlaceWineSetDto));
     }
 
     @DeleteMapping("/cellarplace/filling/{id}")

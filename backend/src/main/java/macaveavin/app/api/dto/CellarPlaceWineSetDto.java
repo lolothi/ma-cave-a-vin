@@ -20,6 +20,18 @@ public class CellarPlaceWineSetDto {
         this.quantityBottle = quantityBottle;
     }
 
+    public Long getWineId() {
+        return wineId;
+    }
+
+    public Long getCellarPlaceId() {
+        return cellarPlaceId;
+    }
+
+    public Integer getQuantityBottle() {
+        return quantityBottle;
+    }
+
     public CellarPlaceWineSetDto(Long wineId, Long cellarPlaceId, Integer quantityBottle) {
         this.wineId = wineId;
         this.cellarPlaceId = cellarPlaceId;

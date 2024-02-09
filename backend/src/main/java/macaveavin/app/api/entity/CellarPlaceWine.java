@@ -3,6 +3,8 @@ package macaveavin.app.api.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Optional;
+
 @Entity
 @Table(name = "CellarPlaceWine")
 @Data
@@ -31,4 +33,5 @@ public class CellarPlaceWine {
     public CellarPlaceWine() {
 
     }
+
 }
