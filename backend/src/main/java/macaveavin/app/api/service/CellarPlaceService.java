@@ -25,13 +25,7 @@ public class CellarPlaceService {
     private CellarPlaceMapper cellarPlaceMapper;
 
     @Autowired
-    private WineRepository wineRepository;
-
-    @Autowired
     private CellarRepository cellarRepository;
-
-    @Autowired
-    private CellarPlaceWineRepository cellarPlaceWineRepository;
 
     public List<CellarPlaceDto> getCellarPlaces() {
         return ((List<CellarPlace>) cellarPlaceRepository.findAll()).stream().filter(Objects::nonNull)
@@ -75,7 +69,7 @@ public class CellarPlaceService {
 
     /**
      * Create new cellar place for a bottle or a group of bottles.
-     * Check in first if enough place in cellar Place.
+     * Check in first if cellar Place is used.
      * @param cellarPlaceDto
      * @return
      */
@@ -88,7 +82,7 @@ public class CellarPlaceService {
                     CellarPlace cellarPlace = cellarPlaceMapper.convertToEntity(cellarPlaceDto, cellar);
                     return cellarPlaceMapper.convertToDto(Optional.of(cellarPlaceRepository.save(cellarPlace)));
                 } catch (Exception e) {
-                    throw new RuntimeException("Une erreur s'est produite lors de la sauvegarde de la cave.", e);
+                    throw new RuntimeException("Une erreur s'est produite lors de la sauvegarde de l'emplacement.", e);
                 }
             } else {
                 throw new CellarPlaceNotEmptyException("Emplacement déja utilisé");

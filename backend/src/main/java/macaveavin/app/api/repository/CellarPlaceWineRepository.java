@@ -1,13 +1,10 @@
 package macaveavin.app.api.repository;
 
-import macaveavin.app.api.entity.CellarPlace;
 import macaveavin.app.api.entity.CellarPlaceWine;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface CellarPlaceWineRepository extends CrudRepository<CellarPlaceWine, Long> {

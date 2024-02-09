@@ -1,7 +1,9 @@
 package macaveavin.app.api.controller;
 
 import macaveavin.app.api.dto.CellarPlaceDto;
+import macaveavin.app.api.dto.CellarPlaceWineDto;
 import macaveavin.app.api.service.CellarPlaceService;
+import macaveavin.app.api.service.CellarPlaceWineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,9 @@ import java.util.Optional;
 public class CellarPlaceController {
     @Autowired
     private CellarPlaceService cellarPlaceService;
+
+    @Autowired
+    private CellarPlaceWineService cellarPlaceWineService;
 
     @GetMapping("/cellarplace")
     public List<CellarPlaceDto> getCellarPlaces() {
@@ -32,7 +37,6 @@ public class CellarPlaceController {
     @PostMapping("/cellarplace")
     public CellarPlaceDto createNewCellarPlace(@RequestBody CellarPlaceDto newCellarPlaceDto) {
         System.out.println("newCellarPlaceDto: "+newCellarPlaceDto);
-        CellarPlaceDto cellarPlaceDto = cellarPlaceService.createNewCellarPlace(newCellarPlaceDto);
         return cellarPlaceService.createNewCellarPlace(newCellarPlaceDto);
     }
 
@@ -41,9 +45,30 @@ public class CellarPlaceController {
         return cellarPlaceService.deleteCellarPlace(id);
     }
 
-/*    @PatchMapping("/cellarplace/{id}")
-    public Optional<CellarPlaceDto> updateCellarPlace(@RequestBody CellarPlaceDto updatedCellarPlaceDto, @PathVariable Long id) {
-        return cellarPlaceService.updateCellarPlace(updatedCellarPlaceDto, id);
-    }*/
+    //to fill cellar place with bottle
+    @GetMapping("/cellarplace/filling/{id}")
+    public Optional<CellarPlaceWineDto> getOneCellarPlaceWine(@PathVariable Long id) {
+        return cellarPlaceWineService.getCellarPlaceWine(id);
+    }
+
+    @GetMapping("/cellarplace/filling")
+    public List<CellarPlaceWineDto> getCellarPlaceWines() {
+        return cellarPlaceWineService.getCellarPlaceWines();
+    }
+
+    @PatchMapping("/cellarplace/filling/{id}")
+    public Optional<CellarPlaceWineDto> updateCellarPlaceWine(@RequestBody CellarPlaceWineDto updatedCellarPlaceWineDto, @PathVariable Long id) {
+        return cellarPlaceWineService.updateCellarPlaceWine(updatedCellarPlaceWineDto, id);
+    }
+
+    @PostMapping("/cellarplace/filling")
+    public Optional<CellarPlaceWineDto> createNewCellarPlaceWine(@RequestBody CellarPlaceWineDto cellarPlaceWineDto) {
+        return Optional.ofNullable(cellarPlaceWineService.createNewCellarPlaceWine(cellarPlaceWineDto));
+    }
+
+    @DeleteMapping("/cellarplace/filling/{id}")
+    public String deleteCellarPlaceWine(@PathVariable Long id) {
+        return cellarPlaceWineService.deleteCelarPlaceWine(id);
+    }
 
 }
