@@ -1,5 +1,5 @@
 export class Wine {
-  wine_id: number;
+  wineId: number;
   name: String;
   available_year: number;
   type: string;
@@ -17,7 +17,7 @@ export class Wine {
   quantity_in_wine_cellar: number;
 
   constructor(
-    wine_id: number,
+    wineId: number,
     name: String,
     available_year: number,
     type: string,
@@ -34,7 +34,7 @@ export class Wine {
     quantity_tot: number,
     quantity_in_wine_cellar: number
   ) {
-    this.wine_id = wine_id;
+    this.wineId = wineId;
     this.name = name;
     this.available_year = available_year;
     this.type = type;

@@ -1,10 +1,15 @@
 <template>
   <div class="w-full" v-if="wines">
-    <div v-for="wine in wines" :key="wine.wine_id">
-      <router-link :to="{ name: 'MyWineDetails', params: { id: wine.wine_id } }">
+    <div v-for="wine in wines" :key="wine.wineId">
+      <router-link :to="{ name: 'MyWineDetails', params: { id: wine.wineId } }">
         <wineBottle :wine="wine" />
       </router-link>
     </div>
+  <router-link to="/vin/nouveau">
+    <div class="flex mr-10">
+      <strong>Ajouter du vin</strong>
+    </div>
+  </router-link>
   </div>
 </template>
 <script setup lang="ts">

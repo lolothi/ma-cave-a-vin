@@ -62,7 +62,7 @@ const route = useRoute();
 const routeParams = ref(route.params);
 const navBarLinks = ref([
   { to: "/ma-cave", label: "Ma cave" },
-  { to: "/mon-vin", label: "Mes vins" },
+  { to: "/mon-vin", label: "Mon vin" },
   // {to:"/vin", label:"Vin"}
 ]);
 

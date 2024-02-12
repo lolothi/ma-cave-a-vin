@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from './views/Home.vue';
 import NotFound from './views/NotFound.vue';
-import Wine from './views/Wine.vue';
 import MyWine from './views/MyWine.vue';
 import WineDetails from './views/WineDetails.vue';
 import MyWineDetails from './views/MyWineDetails.vue';
@@ -13,11 +12,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
-  },
-  {
-    path: '/vin',
-    name: 'Wine',
-    component: Wine
   },
   {
     path: '/vin/:id',
