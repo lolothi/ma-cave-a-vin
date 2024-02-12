@@ -65,7 +65,6 @@ public class CellarPlaceWineService {
                 Long cellarPlaceId = cellarPlaceWineSetDto.getCellarPlaceId();
                 CellarPlace cellarPlace = cellarPlaceRepository.findById(cellarPlaceId).orElseThrow(() -> new IllegalArgumentException("erreur cellarPlaceId"));
                 if (cellarPlaceWineRepository.getBottlesQuantityByCellarPlaceByPosition(cellarPlaceId)+cellarPlaceWineSetDto.getQuantityBottle() <= cellarPlace.getQuantityBottleMax()){
-                    System.out.println("VERIF: "+ cellarPlaceWineRepository.getBottlesQuantityByCellarPlaceByPosition(cellarPlaceId)+" "+cellarPlace.getQuantityBottleMax());
                     Wine wine = wineRepository.findById(cellarPlaceWineSetDto.getWineId()).orElseThrow(() -> new IllegalArgumentException("erreur wineId"));
                     CellarPlaceWine cellarPlaceWine = cellarPlaceWineMapper.convertToEntity(cellarPlaceWineSetDto, cellarPlace, wine);
                     cellarPlaceWineRepository.save(cellarPlaceWine);
@@ -80,7 +79,7 @@ public class CellarPlaceWineService {
         throw new RuntimeException("Une erreur s'est produite lors de la sauvegarde du remplissage de l'emplacement");
     }
 
-    public String deleteCelarPlaceWine(Long id) {
+    public String deleteCellarPlaceWine(Long id) {
         CellarPlaceWine cellarPlaceWine = cellarPlaceWineRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Erreur id:" + id));
         cellarPlaceWineRepository.delete(cellarPlaceWine);
         return "Bouteille sortie de son emplacement";
