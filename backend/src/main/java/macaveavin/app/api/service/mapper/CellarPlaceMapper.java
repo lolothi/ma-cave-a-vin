@@ -10,10 +10,10 @@ import java.util.Optional;
 
 @Component
 public class CellarPlaceMapper {
-    public CellarPlaceDto convertToDto(Optional<CellarPlace> cellarPlace) {
-        return cellarPlace.map(place -> new CellarPlaceDto(place.getCellar_place_id(), place.getPositionX(), place.getPositionY(),
-                place.getPositionZ(), place.getPositionOpt(), place.getQuantityBottleMax(),
-                place.getCellar().getCellar_id())).orElse(null);
+    public CellarPlaceDto convertToDto(CellarPlace cellarPlace) {
+        return new CellarPlaceDto(cellarPlace.getCellar_place_id(), cellarPlace.getPositionX(), cellarPlace.getPositionY(),
+                cellarPlace.getPositionZ(), cellarPlace.getPositionOpt(), cellarPlace.getQuantityBottleMax(),
+                cellarPlace.getCellar().getCellar_id());
     }
 
     public CellarPlace convertToEntity(CellarPlaceDto cellarPlaceDto, Cellar cellar) {

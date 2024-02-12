@@ -26,23 +26,29 @@ public class WineService {
 
     public List<WineDto> getWines() {
         return ((List<Wine>) wineRepository.findAll()).stream()
-                .map(wine -> wineMapper.convertToDto(Optional.ofNullable(wine)))
+                .map(wine -> wineMapper.convertToDto(wine))
                 .collect(Collectors.toList());
     }
 
-    public Optional<WineDto> getWine(Long id){
-        Optional<Wine> wine = wineRepository.findById(id);
-        if (wine.isPresent()) {
-            return Optional.ofNullable(wineMapper.convertToDto(wine));
+    public WineDto getWine(Long id){
+        Optional<Wine> optionalWine = wineRepository.findById(id);
+        if (optionalWine.isPresent()) {
+            Wine wine = optionalWine.get();
+            return wineMapper.convertToDto(wine);
         }
-        return Optional.empty();
+        return null;
     }
 
-    public Optional<WineDto> updateWine(WineDto updatedWineDto, Long id){
-        Wine wine = wineRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Erreur id:" + id));
-        sharedServices.updateFields(wine, updatedWineDto);
-        wineRepository.save(wine);
-        return Optional.ofNullable(wineMapper.convertToDto(Optional.of(wine)));
+    public WineDto updateWine(WineDto updatedWineDto, Long id){
+        Optional<Wine> optionalWine = wineRepository.findById(id);
+        if (optionalWine.isPresent()) {
+            Wine wine = optionalWine.get();
+            sharedServices.updateFields(optionalWine, updatedWineDto);
+            wineRepository.save(wine);
+            return wineMapper.convertToDto(wine);
+        } else {
+            throw new IllegalArgumentException("Erreur id:" + id);
+        }
     }
 
     public WineDto createNewWine(WineDto wineDto) {

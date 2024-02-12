@@ -30,23 +30,33 @@ public class CellarPlaceWineService {
 
 
     public List<CellarPlaceWineDto> getCellarPlaceWines() {
-        return ((List<CellarPlaceWine>)cellarPlaceWineRepository.findAll()).stream().map(CellarPlaceWine -> cellarPlaceWineMapper.convertToDto(Optional.ofNullable(CellarPlaceWine))).collect(Collectors.toList());
+        return ((List<CellarPlaceWine>)cellarPlaceWineRepository.findAll()).stream()
+                .map(CellarPlaceWine -> cellarPlaceWineMapper.convertToDto(CellarPlaceWine))
+                .collect(Collectors.toList());
     }
 
-    public Optional<CellarPlaceWineDto> getCellarPlaceWine(Long id) {
-        Optional<CellarPlaceWine> cellarPlaceWine = cellarPlaceWineRepository.findById(id);
-        if (cellarPlaceWine.isPresent()) {
-            return Optional.ofNullable(cellarPlaceWineMapper.convertToDto(cellarPlaceWine));
+    public CellarPlaceWineDto getCellarPlaceWine(Long id) {
+        Optional<CellarPlaceWine> optionalCellarPlaceWine = cellarPlaceWineRepository.findById(id);
+        if (optionalCellarPlaceWine.isPresent()) {
+            CellarPlaceWine cellarPlaceWine = optionalCellarPlaceWine.get();
+            return cellarPlaceWineMapper.convertToDto(cellarPlaceWine);
         }
-        return Optional.empty();
+        return null;
     }
-    public Optional<CellarPlaceWineDto> updateCellarPlaceWine(CellarPlaceWineDto updatedCellarPlaceWine, Long id) {
-        CellarPlaceWine cellarPlaceWine = cellarPlaceWineRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("erreur id:"+id));
-        if(updatedCellarPlaceWine.getQuantityBottle() != null) {
-            cellarPlaceWine.setQuantityBottle(updatedCellarPlaceWine.getQuantityBottle());
+    public CellarPlaceWineDto updateCellarPlaceWine(CellarPlaceWineDto updatedCellarPlaceWine, Long id) {
+        Optional<CellarPlaceWine> optionalCellarPlaceWine = cellarPlaceWineRepository.findById(id);
+        if (optionalCellarPlaceWine.isPresent()) {
+            if(updatedCellarPlaceWine.getQuantityBottle() != null) {
+                CellarPlaceWine cellarPlaceWine = optionalCellarPlaceWine.get();
+                cellarPlaceWine.setQuantityBottle(updatedCellarPlaceWine.getQuantityBottle());
+                cellarPlaceWineRepository.save(cellarPlaceWine);
+                return cellarPlaceWineMapper.convertToDto(cellarPlaceWine);
+            }
+
+        } else {
+            throw new IllegalArgumentException("Erreur id:" + id);
         }
-        cellarPlaceWineRepository.save(cellarPlaceWine);
-        return Optional.ofNullable(cellarPlaceWineMapper.convertToDto(Optional.of(cellarPlaceWine)));
+        return null;
     }
 
     public CellarPlaceWineDto createNewCellarPlaceWine(CellarPlaceWineSetDto cellarPlaceWineSetDto) {
@@ -59,7 +69,7 @@ public class CellarPlaceWineService {
                     Wine wine = wineRepository.findById(cellarPlaceWineSetDto.getWineId()).orElseThrow(() -> new IllegalArgumentException("erreur wineId"));
                     CellarPlaceWine cellarPlaceWine = cellarPlaceWineMapper.convertToEntity(cellarPlaceWineSetDto, cellarPlace, wine);
                     cellarPlaceWineRepository.save(cellarPlaceWine);
-                    return cellarPlaceWineMapper.convertToDto(Optional.of(cellarPlaceWine));
+                    return cellarPlaceWineMapper.convertToDto(cellarPlaceWine);
                 }
                 throw new CellarPlaceNotEmptyException("Plus de place dans l'emplacement");
             } catch (Exception e) {

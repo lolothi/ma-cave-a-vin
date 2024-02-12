@@ -24,23 +24,29 @@ public class CellarService {
 
     public List<CellarDto> getCellars() {
         return ((List<Cellar>)cellarRepository.findAll()).stream()
-                .map(cellar -> cellarMapper.convertToDto(Optional.ofNullable(cellar)))
+                .map(cellar -> cellarMapper.convertToDto(cellar))
                 .collect(Collectors.toList());
     }
 
-    public Optional<CellarDto> getCellar(Long id) {
-        Optional<Cellar> cellar = cellarRepository.findById(id);
-        if (cellar.isPresent()) {
-            return Optional.ofNullable(cellarMapper.convertToDto(cellar));
+    public CellarDto getCellar(Long id) {
+        Optional<Cellar> optionalCellar = cellarRepository.findById(id);
+        if (optionalCellar.isPresent()) {
+            Cellar cellar = optionalCellar.get();
+            return cellarMapper.convertToDto(cellar);
         }
-        return Optional.empty();
+        return null;
     }
 
-    public Optional<CellarDto> updateCellar(CellarDto updatedCellarDto, Long id) {
-        Cellar cellar = cellarRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Erreur id:" + id));
-        sharedServices.updateFields(cellar, updatedCellarDto);
-        cellarRepository.save(cellar);
-        return Optional.ofNullable(cellarMapper.convertToDto(Optional.of(cellar)));
+    public CellarDto updateCellar(CellarDto updatedCellarDto, Long id) {
+        Optional<Cellar> optionalCellar = cellarRepository.findById(id);
+        if (optionalCellar.isPresent()) {
+            Cellar cellar = optionalCellar.get();
+            sharedServices.updateFields(cellar, updatedCellarDto);
+            cellarRepository.save(cellar);
+            return cellarMapper.convertToDto(cellar);
+        } else {
+            throw new IllegalArgumentException("Erreur id:" + id);
+        }
     }
 
     public CellarDto createNewCellar (CellarDto cellarDto) {

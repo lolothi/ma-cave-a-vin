@@ -26,12 +26,12 @@ public class CellarPlaceController {
     }
 
     @GetMapping("/cellarplace/{id}")
-    public Optional<CellarPlaceDto> getOneCellarPlace(@PathVariable Long id) {
+    public CellarPlaceDto getOneCellarPlace(@PathVariable Long id) {
         return cellarPlaceService.getCellarPlace(id);
     }
 
     @PatchMapping("/cellarplace/{id}")
-    public Optional<CellarPlaceDto> updateCellarPlace(@RequestBody CellarPlaceDto updatedCellarPlaceDto, @PathVariable Long id) {
+    public CellarPlaceDto updateCellarPlace(@RequestBody CellarPlaceDto updatedCellarPlaceDto, @PathVariable Long id) {
         return cellarPlaceService.updateCellarPlace(updatedCellarPlaceDto, id);
     }
 
@@ -48,7 +48,7 @@ public class CellarPlaceController {
 
     //to fill cellar place with bottle
     @GetMapping("/cellarplace/filling/{id}")
-    public Optional<CellarPlaceWineDto> getOneCellarPlaceWine(@PathVariable Long id) {
+    public CellarPlaceWineDto getOneCellarPlaceWine(@PathVariable Long id) {
         return cellarPlaceWineService.getCellarPlaceWine(id);
     }
 
@@ -58,13 +58,13 @@ public class CellarPlaceController {
     }
 
     @PatchMapping("/cellarplace/filling/{id}")
-    public Optional<CellarPlaceWineDto> updateCellarPlaceWine(@RequestBody CellarPlaceWineDto updatedCellarPlaceWineDto, @PathVariable Long id) {
+    public CellarPlaceWineDto updateCellarPlaceWine(@RequestBody CellarPlaceWineDto updatedCellarPlaceWineDto, @PathVariable Long id) {
         return cellarPlaceWineService.updateCellarPlaceWine(updatedCellarPlaceWineDto, id);
     }
 
     @PostMapping("/cellarplace/filling")
-    public Optional<CellarPlaceWineDto> createNewCellarPlaceWine(@RequestBody CellarPlaceWineSetDto cellarPlaceWineSetDto) {
-        return Optional.ofNullable(cellarPlaceWineService.createNewCellarPlaceWine(cellarPlaceWineSetDto));
+    public CellarPlaceWineDto createNewCellarPlaceWine(@RequestBody CellarPlaceWineSetDto cellarPlaceWineSetDto) {
+        return cellarPlaceWineService.createNewCellarPlaceWine(cellarPlaceWineSetDto);
     }
 
     @DeleteMapping("/cellarplace/filling/{id}")

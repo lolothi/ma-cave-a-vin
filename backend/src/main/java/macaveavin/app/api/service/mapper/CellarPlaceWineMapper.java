@@ -11,11 +11,9 @@ import java.util.Optional;
 
 @Component
 public class CellarPlaceWineMapper {
-    public CellarPlaceWineDto convertToDto(Optional<CellarPlaceWine> cellarPlaceWine) {
-        if (cellarPlaceWine.isPresent()) {
-            return new CellarPlaceWineDto(cellarPlaceWine.get().getCellar_place_wine_id(), cellarPlaceWine.get().getWine(), cellarPlaceWine.get().getCellarPlace(), cellarPlaceWine.get().getQuantityBottle());
-        }
-        return null;
+    public CellarPlaceWineDto convertToDto(CellarPlaceWine cellarPlaceWine) {
+        return new CellarPlaceWineDto(cellarPlaceWine.getCellar_place_wine_id(), cellarPlaceWine.getWine(), cellarPlaceWine.getCellarPlace(), cellarPlaceWine.getQuantityBottle());
+
     }
 
     public CellarPlaceWine convertToEntity(CellarPlaceWineSetDto cellarPlaceWineSetDto, CellarPlace cellarPlace, Wine wine) {

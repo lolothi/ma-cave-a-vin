@@ -8,10 +8,11 @@ import java.util.Optional;
 
 @Component
 public class WineMapper {
-    public WineDto convertToDto(Optional<Wine> wine) {
-        return wine.map(value -> new WineDto(value.getWineId(), value.getName(), value.getAvailableYear(), value.getType(), value.getCountry(), value.getProducer(), value.getVariety(),
-                value.getDesignation(), value.getEan(), value.getPictureLink(), value.getWithFood(), value.getNote(), value.getComments(),
-                value.getTag(), value.getQuantityTot(), value.getQuantityInWineCellar())).orElse(null);
+    public WineDto convertToDto(Wine wine) {
+        return new WineDto(wine.getWineId(), wine.getName(), wine.getAvailableYear(), wine.getType(), wine.getCountry(), wine.getProducer(), wine.getVariety(),
+                wine.getDesignation(), wine.getEan(), wine.getPictureLink(), wine.getWithFood(), wine.getNote(), wine.getComments(),
+                wine.getTag(), wine.getQuantityTot(), wine.getQuantityInWineCellar());
+
     }
 
     public Wine convertToEntity(WineDto wineDto) {

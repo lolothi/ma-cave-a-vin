@@ -26,12 +26,12 @@ public class CellarController {
     }
 
     @GetMapping("/cellar/{id}")
-    public Optional<CellarDto> getOneCellar(@PathVariable Long id) {
+    public CellarDto getOneCellar(@PathVariable Long id) {
         return cellarService.getCellar(id);
     }
 
     @PatchMapping("/cellar/{id}")
-    public Optional<CellarDto> updateCellar (@RequestBody CellarDto updatedCellarDto, @PathVariable Long id) {
+    public CellarDto updateCellar (@RequestBody CellarDto updatedCellarDto, @PathVariable Long id) {
         return cellarService.updateCellar(updatedCellarDto, id);
     }
 

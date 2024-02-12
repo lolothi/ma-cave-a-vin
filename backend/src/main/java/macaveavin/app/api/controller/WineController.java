@@ -41,12 +41,12 @@ public class WineController {
     }
 
     @GetMapping("/wine/{id}")
-    public Optional<WineDto> getOneWine(@PathVariable Long id) {
+    public WineDto getOneWine(@PathVariable Long id) {
         return wineService.getWine(id);
     }
 
     @PatchMapping("wine/{id}")
-    public Optional<WineDto> updateWine(@RequestBody WineDto updatedWineDto, @PathVariable Long id) {
+    public WineDto updateWine(@RequestBody WineDto updatedWineDto, @PathVariable Long id) {
         return wineService.updateWine(updatedWineDto, id);
     }
 
