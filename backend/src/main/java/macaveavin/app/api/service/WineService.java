@@ -2,12 +2,12 @@ package macaveavin.app.api.service;
 
 import macaveavin.app.api.dto.WineDto;
 import macaveavin.app.api.entity.Wine;
+import macaveavin.app.api.entity.WineTypeEnum;
 import macaveavin.app.api.repository.WineRepository;
 import macaveavin.app.api.service.mapper.WineMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -26,6 +26,12 @@ public class WineService {
 
     public List<WineDto> getWines() {
         return ((List<Wine>) wineRepository.findAll()).stream()
+                .map(wine -> wineMapper.convertToDto(wine))
+                .collect(Collectors.toList());
+    }
+
+    public List<WineDto> getWinesByType(Optional<WineTypeEnum> wineType) {
+        return wineRepository.getWinesByType(wineType).stream()
                 .map(wine -> wineMapper.convertToDto(wine))
                 .collect(Collectors.toList());
     }

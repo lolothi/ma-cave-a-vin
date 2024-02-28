@@ -2,7 +2,7 @@ CREATE TABLE wine (
   wine_id integer generated always as IDENTITY,
   name varchar(100),
   available_year integer,
-  type varchar(100),
+  type integer,
   country varchar(100),
   producer varchar(100),
   variety varchar(100),
